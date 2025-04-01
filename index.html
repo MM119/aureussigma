@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aureus Sigma Capital</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --gold: #D4AF37;
+      --light-gray-1: #E5E5E5;
+      --neutral-gray: #A9A9A9;
+      --light-gray-2: #B3B3B3;
+      --dark-gray-1: #2C2C2C;
+      --dark-gray-2: #545454;
+      /* Adding complementary blues inspired by AQR's palette */
+      --deep-blue: #003366;
+      --medium-blue: #0066a1;
+      --light-blue: #a0c8e0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: white;
+      color: var(--dark-gray-1);
+      line-height: 1.6;
+      font-family: 'Georgia', serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Typography - More academic styling inspired by AQR */
+    h1, h2, h3, h4 {
+      font-family: 'Garamond', 'Times New Roman', serif;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      color: var(--dark-gray-1);
+      line-height: 1.2;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      color: var(--dark-gray-2);
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p, li, table {
+      margin-bottom: 1.2rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    
+    .caption {
+      font-size: 0.85rem;
+      color: var(--dark-gray-2);
+      font-style: italic;
+    }
+    
+    .gold-accent {
+      color: var(--gold);
+    }
+    
+    .blue-accent {
+      color: var(--medium-blue);
+    }
+    
+    .fancy-title {
+      display: inline-block;
+      position: relative;
+    }
+    
+    .fancy-title:after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      background-color: var(--gold);
+      bottom: -8px;
+      left: 0;
+    }
+    
+    .centered-title {
+      text-align: center;
+    }
+    
+    .centered-title:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Header - Clean, minimal like AQR's */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+    }
+    
+    .logo-text {
+      color: var(--dark-gray-1);
+    }
+    
+    .logo-text span {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--dark-gray-2);
+      text-transform: uppercase;
+    }
+    
+    /* Navigation - Research categorized like AQR */
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    
+    .nav-links a {
+      color: var(--dark-gray-2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    
+    .nav-links a:hover:after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--gold);
+    }
+    
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      padding: 1rem 0;
+    }
+    
+    .dropdown-content a {
+      color: var(--dark-gray-2);
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      display: block;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.9rem;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .btn {
+      background-color: white;
+      color: var(--dark-gray-1);
+      padding: 0.7rem 1.3rem;
+      border: 1px solid var(--dark-gray-1);
+      cursor: pointer;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: var(--dark-gray-1);
+      color: white;
+    }
+    
+    .btn-primary {
+      background-color: var(--gold);
+      color: white;
+      border: 1px solid var(--gold);
+    }
+    
+    .btn-primary:hover {
+      background-color: #c09c30;
+      border-color: #c09c30;
+    }
+    
+    /* Hero Section - Academic and data-forward */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+      background-color: white;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .hero-text {
+      flex: 0 0 50%;
+    }
+    
+    .hero-text h1 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-text p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: var(--dark-gray-2);
+      max-width: 90%;
+    }
+    
+    .hero-stats {
+      flex: 0 0 45%;
+      background-color: var(--light-gray-1);
+      padding: 2rem;
+      border-radius: 4px;
+    }
+    
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--light-gray-2);
+      padding-bottom: 0.5rem;
+    }
+    
+    .stat-title {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--dark-gray-2);
+    }
+    
+    .stat-tabs {
+      display: flex;
+    }
+    
+    .stat-tab {
+      padding: 0.3rem 0.8rem;
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    
+    .stat-tab.active {
+      background-color: var(--gold);
+      color: white;
+    }
+    
+    .stat-chart {
+      height: 240px;
+      background-color: white;
+      margin-bottom: 1rem;
+      border-radius: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    
+    .chart-placeholder {
+      width: 90%;
+      height: 80%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200'%3E%3Cpath d='M0,150 Q250,50 500,100 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='3'/%3E%3Cpath d='M0,180 Q250,120 500,140 T1000,100' fill='none' stroke='%230066a1' stroke-width='3'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .stat-legend {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 0 1rem;
+      font-size: 0.8rem;
+    }
+    
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      margin-right: 0.5rem;
+      border-radius: 2px;
+    }
+    
+    .gold-color {
+      background-color: var(--gold);
+    }
+    
+    .blue-color {
+      background-color: var(--medium-blue);
+    }
+    
+    /* Research Section - AQR style with academic papers */
+    .research {
+      padding: 5rem 0;
+      background-color: var(--light-gray-1);
+    }
+    
+    .research-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .paper-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .paper-card {
+      background-color: white;
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .paper-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .paper-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--dark-gray-2);
+    }
+    
+    .paper-category {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      background-color: var(--light-blue);
+      color: var(--deep-blue);
+      border-radius: 2px;
+    }
+    
+    .paper-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    
+    .paper-authors {
+      font-style: italic;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .paper-card p {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .paper-link {
+      display: inline-block;
+      color: var(--medium-blue);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .paper-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Strategies Section - AQR-style with more data and charts */
+    .strategies {
+      padding: 5rem 0;
+    }
+    
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    
+    .strategy-card {
+      display: flex;
+    }
+    
+    .strategy-icon {
+      flex: 0 0 60px;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-right: 1.5rem;
+      font-family: serif;
+    }
+    
+    .strategy-content h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .strategy-stats {
+      display: flex;
+      margin-top: 1.5rem;
+    }
+    
+    .strategy-stat {
+      margin-right: 2rem;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--dark-gray-1);
+      margin-bottom: 0.3rem;
+    }
+    
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--dark-gray-2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Team Section - Faculty-style presentation like AQR */
+    .team {
+      padding: 5rem 0;
+      background-color: white;
+      border-top: 1px solid var(--light-gray-1);
+    }
+    
+    .team-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    
+    .team-member {
+      display: flex;
+    }
+    
+    .member-photo {
+      flex: 0 0 120px;
+      height: 150px;
+      margin-right: 1.5rem;
+      background-color: var(--light-gray-1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      color: var(--dark-gray-2);
+    }
+    
+    .member-info h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .member-title {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .member-credentials {
+      margin-bottom: 1rem;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    
+    .member-bio {
+      font-size: 0.9rem;
+    }
+    
+    .publications-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: var(--medium-blue);
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    
+    .publications-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Educational Resources Section - Similar to AQR's learning center */
+    .education {
+      padding: 5rem 0;
+      background-color: var(--light-gray-1);
+    }
+    
+    .education-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .resource-card {
+      background-color: white;
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .resource-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--light-blue);
+      color: var(--deep-blue);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .resource-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    .resource-card p {
+      font-size: 0.9rem;
+      flex: 1;
+    }
+    
+    /* Contact Section - Clean and professional */
+    .contact {
+      padding: 5rem 0;
+      background-color: white;
+      border-top: 1px solid var(--light-gray-1);
+    }
+    
+    .contact-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .contact-form form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 0;
+    }
+    
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark-gray-2);
+      font-size: 0.9rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--light-gray-2);
+      font-size: 1rem;
+      background-color: var(--light-gray-1);
+      border: none;
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .contact-info {
+      padding-left: 2rem;
+      border-left: 1px solid var(--light-gray-1);
+    }
+    
+    .info-item {
+      margin-bottom: 2rem;
+    }
+    
+    .info-item h3 {
+      color: var(--dark-gray-1);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .info-item p {
+      color: var(--dark-gray-2);
+      font-size: 0.9rem;
+    }
+    
+    /* Footer - Simple and elegant like AQR */
+    footer {
+      background-color: var(--dark-gray-1);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-about h2 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .footer-about p {
+      color: var(--light-gray-2);
+      font-size: 0.9rem;
+    }
+    
+    .footer-links h3 {
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: var(--light-gray-2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--light-gray-2);
+      font-size: 0.8rem;
+    }
+    
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    .legal-links a {
+      color: var(--light-gray-2);
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin: 0 1rem;
+    }
+    
+    .legal-links a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Academic Styling for Tablet & Mobile */
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero-content {
+        flex-direction: column;
+      }
+      
+      .hero-text, .hero-stats {
+        flex: 0 0 100%;
+      }
+      
+      .hero-stats {
+        margin-top: 3rem;
+      }
+      
+      .paper-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .strategy-grid, .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .education-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .contact-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .contact-info {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 2rem;
+        border-top: 1px solid var(--light-gray-1);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .paper-grid, .education-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .team-member {
+        flex-direction: column;
+      }
+      
+      .member-photo {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-form form {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <img src="https://i.ibb.co/dLPjhC2/aureus-sigma-logo.png" alt="Aureus Sigma Capital" class="logo-icon" style="width: auto; height: 50px;">
+          <div class="logo-text">
+            Aureus
+            <span>Sigma Capital</span>
+          </div>
+        </a>
+        
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li class="dropdown">
+            <a href="#strategies">Strategies</a>
+            <div class="dropdown-content">
+              <a href="#">Statistical Arbitrage</a>
+              <a href="#">Machine Learning</a>
+              <a href="#">Risk Premia</a>
+              <a href="#">Multi-Factor Models</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#research">Research</a>
+            <div class="dropdown-content">
+              <a href="#">Academic Papers</a>
+              <a href="#">White Papers</a>
+              <a href="#">Market Commentary</a>
+              <a href="#">Data Library</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#education">Education</a>
+            <div class="dropdown-content">
+              <a href="#">Factor Investing</a>
+              <a href="#">Systematic Strategies</a>
+              <a href="#">Risk Management</a>
+              <a href="#">Glossary</a>
+            </div>
+          </li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <button class="btn">Client Portal</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section - AQR-inspired with data focus -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Quantitative Excellence Through <span class="gold-accent">Systematic Investing</span></h1>
+          <p>Aureus Sigma Capital applies rigorous academic research and advanced mathematics to deliver consistent risk-adjusted returns across market cycles.</p>
+          <button class="btn btn-primary">Explore Our Approach</button>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-header">
+            <div class="stat-title">Strategy Performance</div>
+            <div class="stat-tabs">
+              <button class="stat-tab active">1Y</button>
+              <button class="stat-tab">3Y</button>
+              <button class="stat-tab">5Y</button>
+              <button class="stat-tab">YTD</button>
+            </div>
+          </div>
+          
+          <div class="stat-chart">
+            <div class="chart-placeholder"></div>
+            <div class="stat-legend">
+              <div class="legend-item">
+                <div class="legend-color gold-color"></div>
+                <div>Multi-Factor</div>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color blue-color"></div>
+                <div>Benchmark</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="caption">
+            Hypothetical performance shown for illustrative purposes only. Past performance is not indicative of future results.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Section - Academic paper format like AQR -->
+  <section id="research" class="research">
+    <div class="container">
+      <div class="research-header">
+        <h2 class="fancy-title centered-title">Latest Research</h2>
+        <p>Our team publishes original research exploring market dynamics and quantitative methodologies.</p>
+      </div>
+      
+      <div class="paper-grid">
+        <div class="paper-card">
+          <div class="paper-meta">
+            <div class="paper-date">March 2025</div>
+            <div class="paper-category">Factor Investing</div>
+          </div>
+          <h3 class="paper-title">Beyond Value and Momentum: Exploring Alternative Risk Premia</h3>
+          <div class="paper-authors">Chen, A., Kwan, R., & Goldstein, S.</div>
+          <p>This paper examines alternative risk premia beyond traditional value and momentum factors, exploring their persistence across different market regimes.</p>
+          <a href="#" class="paper-link">Read Paper →</a>
+        </div>
+        
+        <div class="paper-card">
+          <div class="paper-meta">
+            <div class="paper-date">February 2025</div>
+            <div class="paper-category">Machine Learning</div>
+          </div>
+          <h3 class="paper-title">Feature Selection in Quantitative Trading: A Comparative Analysis</h3>
+          <div class="paper-authors">Kwan, R., & Torres, M.</div>
+          <p>We compare various feature selection techniques in machine learning models for quantitative trading, emphasizing interpretability alongside performance.</p>
+          <a href="#" class="paper-link">Read Paper →</a>
+        </div>
+        
+        <div class="paper-card">
+          <div class="paper-meta">
+            <div class="paper-date">January 2025</div>
+            <div class="paper-category">Risk Management</div>
+          </div>
+          <h3 class="paper-title">Tail Risk Hedging: Options vs. Alternative Strategies</h3>
+          <div class="paper-authors">Goldstein, S., Chen, A., & Torres, M.</div>
+          <p>This study presents a framework for evaluating the cost-effectiveness of different tail risk hedging approaches across various market environments.</p>
+          <a href="#" class="paper-link">Read Paper →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategies Section - AQR-style with data elements -->
+  <section id="strategies" class="strategies">
+    <div class="container">
+      <h2 class="fancy-title">Investment Strategies</h2>
+      <p>Our systematic approach is grounded in empirical evidence, financial theory, and advanced mathematics.</p>
+      
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <div class="strategy-icon">Σ</div>
+          <div class="strategy-content">
+            <h3>Statistical Arbitrage</h3>
+            <p>Exploiting price differentials between related securities through mean-reversion models and pair trading strategies with rigorous statistical validation.</p>
+            <div class="strategy-stats">
+              <div class="strategy-stat">
+                <div class="stat-value">0.76</div>
+                <div class="stat-label">Sharpe Ratio</div>
+              </div>
+              <div class="strategy-stat">
+                <div class="stat-value">4.2%</div>
+                <div class="stat-label">Volatility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strategy-card">
+          <div class="strategy-icon">∞</div>
+          <div class="strategy-content">
+            <h3>Machine Learning</h3>
+            <p>Leveraging neural networks, ensemble methods, and natural language processing to identify complex patterns in financial data and market sentiment.</p>
+            <div class="strategy-stats">
+              <div class="strategy-stat">
+                <div class="stat-value">0.82</div>
+                <div class="stat-label">Sharpe Ratio</div>
+              </div>
+              <div class="strategy-stat">
+                <div class="stat-value">6.8%</div>
+                <div class="stat-label">Volatility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strategy-card">
+          <div class="strategy-icon">φ</div>
+          <div class="strategy-content">
+            <h3>Risk Premia</h3>
+            <p>Capturing systematic risk factors across asset classes using sophisticated factor models with robust portfolio construction techniques and risk controls.</p>
+            <div class="strategy-stats">
+              <div class="strategy-stat">
+                <div class="stat-value">0.91</div>
+                <div class="stat-label">Sharpe Ratio</div>
+              </div>
+              <div class="strategy-stat">
+                <div class="stat-value">5.1%</div>
+                <div class="stat-label">Volatility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="strategy-card">
+          <div class="strategy-icon">μ</div>
+          <div class="strategy-content">
+            <h3>Multi-Factor Models</h3>
+            <p>Integrating multiple alpha sources in a unified framework, with dynamic allocation based on market regime identification and risk budgeting principles.</p>
+            <div class="strategy-stats">
+              <div class="strategy-stat">
+                <div class="stat-value">0.88</div>
+                <div class="stat-label">Sharpe Ratio</div>
+              </div>
+              <div class="strategy-stat">
+                <div class="stat-value">7.3%</div>
+                <div class="stat-label">Volatility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section - Faculty-style presentation like AQR -->
+  <section id="team" class="team">
+    <div class="container">
+      <div class="team-header">
+        <h2 class="fancy-title centered-title">Investment Team</h2>
+        <p>Our team combines academic excellence with practical market experience.</p>
+      </div>
+      
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-photo">M</div>
+          <div class="member-info">
+            <h3>Minh Mai, CFA</h3>
+            <div class="member-title">CEO & Head of Research</div>
+            <p class="member-bio">Mr. Mai has pioneered multiple statistical arbitrage strategies across Asian equity markets with a focus on capturing short-term market inefficiencies. He specializes in factor investing and portfolio optimization techniques that leverage machine learning algorithms to identify alpha signals. His systematic approach to risk management has consistently delivered superior risk-adjusted returns through various market cycles.</p>
+            <a href="https://www.linkedin.com/company/wisdomisevn" class="publications-link" target="_blank">View Profile</a>
+          </div>
+        </div>
+        
+        <div class="team-member">
+          <div class="member-photo">D</div>
+          <div class="member-info">
+            <h3>Duc Nguyen</h3>
+            <div class="member-title">Chief Strategy Officer</div>
+            <p class="member-bio">Mr. Nguyen has developed proprietary algorithms for fixed income relative value strategies across emerging markets. His expertise in financial econometrics and time-series analysis has led to the creation of robust trading models that identify mispriced assets. He brings extensive experience in risk modeling and capital allocation frameworks that optimize portfolio performance under varying market conditions.</p>
+            <a href="https://vn.linkedin.com/in/duc-nguyen-1b236836" class="publications-link" target="_blank">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Resources Section - Similar to AQR's learning center -->
+  <section id="education" class="education">
+    <div class="container">
+      <div class="education-header">
+        <h2 class="fancy-title centered-title">Educational Resources</h2>
+        <p>Explore the fundamentals of quantitative investing and systematic strategies.</p>
+      </div>
+      
+      <div class="education-grid">
+        <div class="resource-card">
+          <div class="resource-icon">F</div>
+          <h3>Factor Investing</h3>
+          <p>An introduction to systematic risk factors that drive returns across asset classes, including value, momentum, quality, and low volatility.</p>
+          <a href="#" class="paper-link">Learn More →</a>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-icon">S</div>
+          <h3>Systematic Strategies</h3>
+          <p>Understanding the benefits of rules-based investment approaches that remove emotional bias from decision-making processes.</p>
+          <a href="#" class="paper-link">Learn More →</a>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-icon">R</div>
+          <h3>Risk Management</h3>
+          <p>Exploring sophisticated techniques for measuring, monitoring, and mitigating various forms of financial risk in quantitative portfolios.</p>
+          <a href="#" class="paper-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section - Clean and professional -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-header">
+        <h2 class="fancy-title centered-title">Contact Us</h2>
+        <p>Reach out to our team for more information about our investment strategies and services.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input type="text" id="organization" class="form-control">
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" class="form-control">
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="inquiry">Inquiry Type</label>
+              <select id="inquiry" class="form-control">
+                <option value="">Select an option</option>
+                <option value="investor">Investor Relations</option>
+                <option value="research">Research Collaboration</option>
+                <option value="careers">Careers</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="contact-info">
+          <div class="info-item">
+            <h3>Headquarters</h3>
+            <p>Financial District<br>New York, NY 10004<br>United States</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Investor Relations</h3>
+            <p>investors@aureussigma.com<br>+1 (212) 555-7890</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Research</h3>
+            <p>research@aureussigma.com<br>+1 (212) 555-7891</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Careers</h3>
+            <p>We're always looking for exceptional talent in quantitative research, software engineering, and mathematical finance.</p>
+            <a href="#" class="paper-link">View Open Positions →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer - Simple and elegant like AQR -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h2>Aureus Sigma Capital</h2>
+          <p>A quantitative investment management firm dedicated to delivering superior risk-adjusted returns through systematic strategies backed by rigorous research and advanced mathematics.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Strategies</h3>
+          <ul>
+            <li><a href="#">Statistical Arbitrage</a></li>
+            <li><a href="#">Machine Learning</a></li>
+            <li><a href="#">Risk Premia</a></li>
+            <li><a href="#">Multi-Factor Models</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Research</h3>
+          <ul>
+            <li><a href="#">Academic Papers</a></li>
+            <li><a href="#">White Papers</a></li>
+            <li><a href="#">Market Commentary</a></li>
+            <li><a href="#">Data Library</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="legal-links">
+          <a href="#">Terms of Use</a> • <a href="#">Privacy Policy</a> • <a href="#">Disclaimers</a> • <a href="#">Form ADV</a>
+        </div>
+        
+        <div class="copyright">
+          <p>&copy; 2025 Aureus Sigma Capital. All rights reserved. Past performance is not indicative of future results. Investment involves risk. Please read all offering documents before investing.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
