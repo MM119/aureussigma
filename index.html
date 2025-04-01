@@ -8,6 +8,7 @@
     /* Global Styles */
     :root {
       --gold: #D4AF37;
+      --enhanced-gold: linear-gradient(to bottom, #D4AF37, #9e8021);
       --light-gray-1: #E5E5E5;
       --neutral-gray: #A9A9A9;
       --light-gray-2: #B3B3B3;
@@ -17,6 +18,7 @@
       --deep-blue: #003366;
       --medium-blue: #0066a1;
       --light-blue: #a0c8e0;
+      --navy-bg: #0A2342;
     }
     
     * {
@@ -30,8 +32,7 @@
       color: var(--dark-gray-1);
       line-height: 1.6;
       font-family: 'Georgia', serif;
-    }
-    
+    }    
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -85,6 +86,7 @@
     .fancy-title {
       display: inline-block;
       position: relative;
+      color: var(--gold);
     }
     
     .fancy-title:after {
@@ -198,7 +200,7 @@
     }
     
     .dropdown-content a {
-      color: var(--dark-gray-2);
+      color: var(--dark-gray-1);
       padding: 0.5rem 1rem;
       text-decoration: none;
       display: block;
@@ -215,7 +217,7 @@
       background-color: white;
       color: var(--dark-gray-1);
       padding: 0.7rem 1.3rem;
-      border: 1px solid var(--dark-gray-1);
+      border: 1px solid var(--light-gray-2);
       cursor: pointer;
       font-size: 0.85rem;
       letter-spacing: 1px;
@@ -692,7 +694,7 @@
     }
     
     .footer-about p {
-      color: var(--light-gray-2);
+      color: var(--dark-gray-2);
       font-size: 0.9rem;
     }
     
@@ -711,7 +713,7 @@
     }
     
     .footer-links a {
-      color: var(--light-gray-2);
+      color: var(--dark-gray-2);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s;
@@ -725,7 +727,7 @@
       text-align: center;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--light-gray-2);
+      color: var(--dark-gray-2);
       font-size: 0.8rem;
     }
     
@@ -736,7 +738,7 @@
     }
     
     .legal-links a {
-      color: var(--light-gray-2);
+      color: var(--dark-gray-2);
       text-decoration: none;
       font-size: 0.8rem;
       margin: 0 1rem;
@@ -820,7 +822,7 @@
     <div class="container">
       <nav>
         <a href="#" class="logo">
-          <img src="assets/images/aureus-sigma-logo.png" alt="Aureus Sigma Capital" class="logo-icon" style="width: auto; height: 50px;">
+          <img src="assets/images/aureus-sigma-logo.jpg" alt="Aureus Sigma Capital" class="logo-icon" style="width: auto; height: 50px;">
           <div class="logo-text">
             Aureus
             <span>Sigma Capital</span>
@@ -1045,21 +1047,21 @@
       
       <div class="team-grid">
         <div class="team-member">
-          <div class="member-photo">M</div>
+          <div class="member-photo"><img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" style="width: 100%; height: 100%; object-fit: cover;"></div>
           <div class="member-info">
             <h3>Minh Mai, CFA</h3>
-            <div class="member-title">CEO & Head of Research</div>
-            <p class="member-bio">Mr. Mai has pioneered multiple statistical arbitrage strategies across Asian equity markets with a focus on capturing short-term market inefficiencies. He specializes in factor investing and portfolio optimization techniques that leverage machine learning algorithms to identify alpha signals. His systematic approach to risk management has consistently delivered superior risk-adjusted returns through various market cycles.</p>
+            <div class="member-title">CEO, Wisdomise Financial Advisory</div>
+            <p class="member-bio">Mr. Minh specializes in financial engineering and quantitative strategies, with expertise in developing statistical arbitrage models for Asian equity markets. At Fujiwara Capital, he led macroeconomic research for a $600M hedge fund, pioneering predictive models that enhanced investment returns. His quantitative approach combines machine learning algorithms with traditional finance to identify alpha signals and optimize portfolio performance. As CEO of Wisdomise, Mr. Minh leverages his technical background to create data-driven investment solutions. A CFA charterholder with a Master from ESCP Europe, he brings rigorous analytical methods to complex financial problems.</p>
             <a href="https://www.linkedin.com/company/wisdomisevn" class="publications-link" target="_blank">View Profile</a>
           </div>
         </div>
         
         <div class="team-member">
-          <div class="member-photo">D</div>
+          <div class="member-photo"><img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" style="width: 100%; height: 100%; object-fit: cover;"></div>
           <div class="member-info">
             <h3>Duc Nguyen</h3>
-            <div class="member-title">Chief Strategy Officer</div>
-            <p class="member-bio">Mr. Nguyen has developed proprietary algorithms for fixed income relative value strategies across emerging markets. His expertise in financial econometrics and time-series analysis has led to the creation of robust trading models that identify mispriced assets. He brings extensive experience in risk modeling and capital allocation frameworks that optimize portfolio performance under varying market conditions.</p>
+            <div class="member-title">Chief Financial Officer, OCB</div>
+            <p class="member-bio">Mr. Duc is a visionary leader with over 20 years of experience driving business growth across diverse sectors including banking, real estate, and investment management. His expertise in financial engineering, risk management, and machine learning applications in finance has led to the development of robust quantitative models that optimize portfolio performance. With transactions exceeding $1Bn in value, Mr. Duc brings exceptional strategic leadership and financial management skills from his C-suite roles at Orient Commercial Joint Stock Bank and other financial institutions.</p>
             <a href="https://vn.linkedin.com/in/duc-nguyen-1b236836" class="publications-link" target="_blank">View Profile</a>
           </div>
         </div>
@@ -1156,7 +1158,7 @@
         <div class="contact-info">
           <div class="info-item">
             <h3>Headquarters</h3>
-            <p>Financial District<br>New York, NY 10004<br>United States</p>
+            <p>15 Le Thanh Ton<br>Ben Nghe, District 1<br>Ho Chi Minh City<br>Vietnam</p>
           </div>
           
           <div class="info-item">
