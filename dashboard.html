@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard - Aureus Sigma Capital</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --gold: #D4AF37;
+      --enhanced-gold: linear-gradient(to bottom, #D4AF37, #9e8021);
+      --light-gray-1: #E5E5E5;
+      --neutral-gray: #A9A9A9;
+      --light-gray-2: #B3B3B3;
+      --dark-gray-1: #2C2C2C;
+      --dark-gray-2: #545454;
+      --deep-blue: #003366;
+      --medium-blue: #0066a1;
+      --light-blue: #a0c8e0;
+      --navy-bg: #0A2342;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #f7f7f7;
+      color: var(--dark-gray-1);
+      line-height: 1.6;
+      font-family: 'Georgia', serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Garamond', 'Times New Roman', serif;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    
+    .fancy-title {
+      display: inline-block;
+      position: relative;
+      color: var(--gold);
+    }
+    
+    .fancy-title:after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      background-color: var(--gold);
+      bottom: -8px;
+      left: 0;
+    }
+    
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+    }
+    
+    .logo-text {
+      color: var(--dark-gray-1);
+    }
+    
+    .logo-text span {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--dark-gray-2);
+      text-transform: uppercase;
+    }
+    
+    .user-menu {
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-greeting {
+      margin-right: 20px;
+      font-size: 0.9rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--enhanced-gold);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    
+    .btn:hover {
+      opacity: 0.9;
+    }
+    
+    .btn-logout {
+      background: var(--dark-gray-2);
+    }
+    
+    /* Dashboard */
+    .dashboard {
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+    
+    .dashboard-welcome {
+      background-color: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    .dashboard-welcome h1 {
+      margin-bottom: 10px;
+    }
+    
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .dashboard-card {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .dashboard-card h3 {
+      color: var(--medium-blue);
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    
+    .dashboard-card p {
+      color: var(--dark-gray-2);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--light-gray-1);
+      padding-top: 15px;
+      margin-top: auto;
+    }
+    
+    .card-date {
+      font-size: 0.8rem;
+      color: var(--neutral-gray);
+    }
+    
+    .card-link {
+      color: var(--medium-blue);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .card-link:hover {
+      text-decoration: underline;
+    }
+    
+    .performance-summary {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .performance-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .performance-tabs {
+      display: flex;
+    }
+    
+    .performance-tab {
+      padding: 5px 10px;
+      margin-left: 5px;
+      background: none;
+      border: 1px solid var(--light-gray-2);
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+    }
+    
+    .performance-tab.active {
+      background-color: var(--medium-blue);
+      color: white;
+      border-color: var(--medium-blue);
+    }
+    
+    .performance-chart {
+      height: 250px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neutral-gray);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <img src="assets/images/logo.jpg" alt="Aureus Sigma Capital" class="logo-icon" style="width: auto; height: 50px;">
+          <div class="logo-text">
+            Aureus
+            <span>Sigma Capital</span>
+          </div>
+        </a>
+        
+        <div class="user-menu">
+          <div class="user-greeting">Welcome, <span id="username">Client</span></div>
+          <button id="logoutBtn" class="btn btn-logout">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <div class="container">
+      <div class="dashboard-welcome">
+        <h1 class="fancy-title">Client Dashboard</h1>
+        <p>Welcome to your personal investment dashboard. Here you can access your portfolio performance, reports, and personalized insights.</p>
+      </div>
+      
+      <div class="performance-summary">
+        <div class="performance-header">
+          <h2>Portfolio Performance</h2>
+          <div class="performance-tabs">
+            <button class="performance-tab active">1M</button>
+            <button class="performance-tab">3M</button>
+            <button class="performance-tab">YTD</button>
+            <button class="performance-tab">1Y</button>
+            <button class="performance-tab">3Y</button>
+          </div>
+        </div>
+        <div class="performance-chart">
+          [Portfolio performance chart would appear here]
+        </div>
+        <p class="caption">Note: Past performance is not indicative of future results.</p>
+      </div>
+      
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <h3>Monthly Report</h3>
+          <p>Access your March 2025 investment report, including detailed performance metrics and portfolio allocation.</p>
+          <div class="card-footer">
+            <div class="card-date">March 31, 2025</div>
+            <a href="#" class="card-link">View Report →</a>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <h3>Portfolio Analysis</h3>
+          <p>Detailed breakdown of your current portfolio allocation, factor exposures, and risk metrics.</p>
+          <div class="card-footer">
+            <div class="card-date">Updated Daily</div>
+            <a href="#" class="card-link">View Analysis →</a>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <h3>Investment Statements</h3>
+          <p>Access your official investment statements and tax documents for your records.</p>
+          <div class="card-footer">
+            <div class="card-date">Various Dates</div>
+            <a href="#" class="card-link">View Statements →</a>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <h3>Strategy Insights</h3>
+          <p>Customized research and market commentary relevant to your investment portfolio.</p>
+          <div class="card-footer">
+            <div class="card-date">Weekly Updates</div>
+            <a href="#" class="card-link">View Insights →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Configuration for authentication server
+    const authServerConfig = {
+      // Prioritized list of server URLs to try (will try each one in order until one works)
+      // If we have a successful server URL stored in localStorage, we'll try that first
+      defaultServerUrls: [
+        'https://api.aureussigmacapital.com',       // Your domain with standard HTTPS port 443 (primary)
+        'https://aureussigma.duckdns.org',         // Duck DNS with standard HTTPS port 443 (fallback)
+        'http://saphira.tail7bda3a.ts.net:443',    // Tailscale FQDN (for users on same mesh)
+      ],
+      // Max retries for each server
+      maxRetries: 2,
+      // Timeout in milliseconds
+      timeout: 5000
+    };
+
+    // Helper function to verify token with multiple server URLs
+    async function verifyToken(token, serverUrls, currentAttempt = 0) {
+      if (currentAttempt >= serverUrls.length) {
+        console.error('Unable to connect to any authentication server');
+        return false;
+      }
+      
+      const serverUrl = serverUrls[currentAttempt];
+      console.log(`Attempting to connect to: ${serverUrl}`);
+      
+      try {
+        // Use AbortController to implement timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), authServerConfig.timeout);
+        
+        const response = await fetch(`${serverUrl}/api/user`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error('Invalid or expired token');
+        }
+        
+        const data = await response.json();
+        
+        // Store the successful server URL for future use
+        localStorage.setItem('authServerUrl', serverUrl);
+        
+        return true;
+      } catch (error) {
+        console.error(`Error verifying token with ${serverUrl}:`, error);
+        
+        // Try the next server URL
+        return await verifyToken(token, serverUrls, currentAttempt + 1);
+      }
+    }
+
+    // Check if user is logged in with JWT
+    document.addEventListener('DOMContentLoaded', async function() {
+      const authToken = localStorage.getItem('authToken');
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      const cachedServerUrl = localStorage.getItem('authServerUrl');
+      
+      if (!authToken || !loggedInUser) {
+        // Redirect to login page if not logged in
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Create an ordered list of server URLs to try
+      let serverUrls = [...authServerConfig.defaultServerUrls];
+      
+      // Put the cached server URL at the beginning if it exists
+      if (cachedServerUrl && !serverUrls.includes(cachedServerUrl)) {
+        serverUrls.unshift(cachedServerUrl);
+      }
+      
+      // Verify the token with server
+      const isVerified = await verifyToken(authToken, serverUrls);
+      
+      if (isVerified) {
+        // Token is valid, update UI with username
+        document.getElementById('username').textContent = loggedInUser;
+        
+        // Add server indicator
+        const serverUrl = localStorage.getItem('authServerUrl');
+        if (serverUrl) {
+          const nav = document.querySelector('.user-menu');
+          const serverDiv = document.createElement('div');
+          serverDiv.className = 'server-indicator';
+          serverDiv.textContent = `Server: ${new URL(serverUrl).hostname}`;
+          serverDiv.style.fontSize = '0.6rem';
+          serverDiv.style.opacity = '0.6';
+          serverDiv.style.marginRight = '10px';
+          serverDiv.style.alignSelf = 'center';
+          nav.insertBefore(serverDiv, document.querySelector('.user-greeting'));
+        }
+      } else {
+        // Token validation failed, redirect to login
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('authServerUrl');
+        window.location.href = 'login.html';
+      }
+      
+      // Handle logout
+      document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('authServerUrl');
+        window.location.href = 'login.html';
+      });
+    });
+  </script>
+</body>
+</html>
