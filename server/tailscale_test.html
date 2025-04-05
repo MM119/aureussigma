@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailscale Authentication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .test-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-url {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .result {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .login-form {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .login-form input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .token-display {
+            margin-top: 15px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tailscale Authentication Test</h1>
+    <p>This tool tests your authentication server through Tailscale.</p>
+    
+    <!-- Health Check Test -->
+    <h2>API Health Check</h2>
+    <div class="test-container">
+        <h3>Test 1: Tailscale Health Check</h3>
+        <div class="test-url">URL: <span id="healthUrl">http://saphira.tail7bda3a.ts.net:3000/api/health</span></div>
+        <div>
+            <button onclick="testHealth()">Test Health Endpoint</button>
+            <button onclick="updatePort('health', 3000)">Port 3000</button>
+            <button onclick="updatePort('health', 8443)">Port 8443</button>
+            <button onclick="updatePort('health', 2345)">Port 2345</button>
+            <button onclick="updatePort('health', 443)">Port 443</button>
+        </div>
+        <div id="healthResult" class="result pending">Not tested yet</div>
+    </div>
+    
+    <!-- Login Test -->
+    <h2>Authentication Test</h2>
+    <div class="test-container">
+        <h3>Test 2: Tailscale Login Test</h3>
+        <div class="test-url">URL: <span id="loginUrl">http://saphira.tail7bda3a.ts.net:3000/api/login</span></div>
+        <div>
+            <button onclick="updatePort('login', 3000)">Port 3000</button>
+            <button onclick="updatePort('login', 8443)">Port 8443</button>
+            <button onclick="updatePort('login', 2345)">Port 2345</button>
+            <button onclick="updatePort('login', 443)">Port 443</button>
+        </div>
+        
+        <div class="login-form">
+            <h3>Login Form</h3>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="admin">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" value="password123">
+            </div>
+            <button onclick="testLogin()">Test Login</button>
+        </div>
+        
+        <div id="loginResult" class="result pending">Not tested yet</div>
+        <div class="token-display" id="tokenDisplay"></div>
+    </div>
+    
+    <!-- Protected Endpoint Test -->
+    <h2>Protected API Test</h2>
+    <div class="test-container">
+        <h3>Test 3: Access Protected Endpoint</h3>
+        <div class="test-url">URL: <span id="protectedUrl">http://saphira.tail7bda3a.ts.net:3000/api/protected</span></div>
+        <div>
+            <button onclick="testProtected()">Test Protected Endpoint</button>
+            <button onclick="updatePort('protected', 3000)">Port 3000</button>
+            <button onclick="updatePort('protected', 8443)">Port 8443</button>
+            <button onclick="updatePort('protected', 2345)">Port 2345</button>
+            <button onclick="updatePort('protected', 443)">Port 443</button>
+        </div>
+        <div id="protectedResult" class="result pending">Not tested yet</div>
+    </div>
+    
+    <script>
+        // Global storage for auth token
+        let authToken = '';
+        
+        // Update port in URL
+        function updatePort(testType, port) {
+            const baseUrl = 'http://saphira.tail7bda3a.ts.net';
+            const urlMap = {
+                'health': `${baseUrl}:${port}/api/health`,
+                'login': `${baseUrl}:${port}/api/login`,
+                'protected': `${baseUrl}:${port}/api/protected`
+            };
+            
+            if (urlMap[testType]) {
+                document.getElementById(`${testType}Url`).textContent = urlMap[testType];
+                document.getElementById(`${testType}Result`).className = 'result pending';
+                document.getElementById(`${testType}Result`).textContent = 'Not tested yet';
+                
+                if (testType === 'login') {
+                    document.getElementById('tokenDisplay').textContent = '';
+                }
+            }
+        }
+        
+        // Test health endpoint
+        function testHealth() {
+            const urlElement = document.getElementById('healthUrl');
+            const resultElement = document.getElementById('healthResult');
+            const url = urlElement.textContent;
+            
+            resultElement.className = 'result pending';
+            resultElement.textContent = 'Testing health endpoint...';
+            
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resultElement.className = 'result success';
+                resultElement.innerHTML = `Health check successful! Response:<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            })
+            .catch(error => {
+                resultElement.className = 'result error';
+                resultElement.textContent = `Health check failed: ${error.message}`;
+                console.error('Health check error:', error);
+            });
+        }
+        
+        // Test login endpoint
+        function testLogin() {
+            const urlElement = document.getElementById('loginUrl');
+            const resultElement = document.getElementById('loginResult');
+            const tokenElement = document.getElementById('tokenDisplay');
+            const url = urlElement.textContent;
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            resultElement.className = 'result pending';
+            resultElement.textContent = 'Testing login...';
+            tokenElement.textContent = '';
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.message || `HTTP error! Status: ${response.status}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    resultElement.className = 'result success';
+                    resultElement.innerHTML = `Login successful!<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    
+                    // Store token for protected endpoint test
+                    authToken = data.token;
+                    tokenElement.innerHTML = `<strong>JWT Token (save for protected test):</strong><br>${authToken}`;
+                } else {
+                    resultElement.className = 'result error';
+                    resultElement.textContent = `Login failed: ${data.message}`;
+                }
+            })
+            .catch(error => {
+                resultElement.className = 'result error';
+                resultElement.textContent = `Login failed: ${error.message}`;
+                console.error('Login error:', error);
+            });
+        }
+        
+        // Test protected endpoint
+        function testProtected() {
+            const urlElement = document.getElementById('protectedUrl');
+            const resultElement = document.getElementById('protectedResult');
+            const url = urlElement.textContent;
+            
+            if (!authToken) {
+                resultElement.className = 'result error';
+                resultElement.textContent = 'No auth token available. Please login first.';
+                return;
+            }
+            
+            resultElement.className = 'result pending';
+            resultElement.textContent = 'Testing protected endpoint...';
+            
+            fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.message || `HTTP error! Status: ${response.status}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                resultElement.className = 'result success';
+                resultElement.innerHTML = `Protected endpoint access successful!<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            })
+            .catch(error => {
+                resultElement.className = 'result error';
+                resultElement.textContent = `Protected endpoint access failed: ${error.message}`;
+                console.error('Protected endpoint error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+tunnel: dbfa6587-ddd8-4182-aa78-36dfb2eb8f38
+credentials-file: /home/raymond/.cloudflared/dbfa6587-ddd8-4182-aa78-36dfb2eb8f38.json
+
+ingress:
+  - hostname: api.aureussigmacapital.com
+    service: http://localhost:3000
+  - service: http_status:404

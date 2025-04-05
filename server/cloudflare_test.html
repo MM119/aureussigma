@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Tunnel Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .test-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .result {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cloudflare Tunnel Test</h1>
+    <p>This page tests your authentication server through Cloudflare Tunnel.</p>
+    
+    <div class="test-container">
+        <h2>Health Check Test</h2>
+        <div>URL: <span id="healthUrl">https://api.aureussigmacapital.com/api/health</span></div>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="healthResult" class="result pending">Not tested yet</div>
+    </div>
+    
+    <script>
+        function testHealth() {
+            const resultElement = document.getElementById('healthResult');
+            const url = document.getElementById('healthUrl').textContent;
+            
+            resultElement.className = 'result pending';
+            resultElement.textContent = 'Testing health endpoint...';
+            
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resultElement.className = 'result success';
+                resultElement.innerHTML = `Health check successful! Response:<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            })
+            .catch(error => {
+                resultElement.className = 'result error';
+                resultElement.textContent = `Health check failed: ${error.message}`;
+                console.error('Health check error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -247,9 +247,26 @@
     const authServerConfig = {
       // Prioritized list of server URLs to try (will try each one in order until one works)
       serverUrls: [
-        'https://api.aureussigmacapital.com/api/login', // Your domain with standard HTTPS port 443
-        'https://aureussigma.duckdns.org/api/login', // Duck DNS fallback with standard HTTPS port 443
-        'http://saphira.tail7bda3a.ts.net:443/api/login', // Tailscale FQDN (for users on same mesh)
+        // Try multiple ports for your domain
+        'https://api.aureussigmacapital.com/api/login', // Standard HTTPS port 443
+        'https://api.aureussigmacapital.com:3000/api/login', // Port 3000
+        'https://api.aureussigmacapital.com:8443/api/login', // Port 8443
+        'https://api.aureussigmacapital.com:2345/api/login', // Port 2345
+        
+        // Try multiple ports for DuckDNS
+        'https://aureussigma.duckdns.org/api/login', // Standard HTTPS port 443
+        'https://aureussigma.duckdns.org:3000/api/login', // Port 3000
+        'https://aureussigma.duckdns.org:8443/api/login', // Port 8443
+        'https://aureussigma.duckdns.org:2345/api/login', // Port 2345
+        
+        // Try Tailscale options for users on the same mesh
+        'http://saphira.tail7bda3a.ts.net:3000/api/login', // Tailscale with port 3000
+        'http://saphira.tail7bda3a.ts.net:8443/api/login', // Tailscale with port 8443
+        'http://saphira.tail7bda3a.ts.net:2345/api/login', // Tailscale with port 2345
+        'http://saphira.tail7bda3a.ts.net:443/api/login',  // Tailscale with port 443
+        
+        // Try direct IP via SSH tunnel if configured
+        'http://127.0.0.1:8443/api/login',  // Local port forward through SSH
       ],
       // Max retries for each server
       maxRetries: 2,

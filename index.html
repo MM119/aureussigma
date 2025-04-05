@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aureus Sigma Capital</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <style>
     /* Global Styles */
     :root {
@@ -108,138 +111,7 @@
       transform: translateX(-50%);
     }
     
-    /* Header - Clean, minimal like AQR's */
-    header {
-      background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      width: 100%;
-      z-index: 100;
-    }
-    
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      margin-right: 12px;
-    }
-    
-    .logo-text {
-      color: var(--dark-gray-1);
-    }
-    
-    .logo-text span {
-      display: block;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      color: var(--dark-gray-2);
-      text-transform: uppercase;
-    }
-    
-    /* Navigation - Research categorized like AQR */
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-    
-    .nav-links li {
-      margin-left: 2rem;
-    }
-    
-    .nav-links a {
-      color: var(--dark-gray-2);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: color 0.3s;
-      position: relative;
-    }
-    
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-    
-    .nav-links a:hover:after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: var(--gold);
-    }
-    
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: white;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      z-index: 1;
-      top: 100%;
-      left: 0;
-      padding: 1rem 0;
-    }
-    
-    .dropdown-content a {
-      color: var(--dark-gray-1);
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      display: block;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.9rem;
-    }
-    
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    
-    .btn {
-      background-color: white;
-      color: var(--dark-gray-1);
-      padding: 0.7rem 1.3rem;
-      border: 1px solid var(--light-gray-2);
-      cursor: pointer;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: all 0.3s;
-    }
-    
-    .btn:hover {
-      background-color: var(--dark-gray-1);
-      color: white;
-    }
-    
-    .btn-primary {
-      background-color: var(--gold);
-      color: white;
-      border: 1px solid var(--gold);
-    }
-    
-    .btn-primary:hover {
-      background-color: #c09c30;
-      border-color: #c09c30;
-    }
+    /* Placeholder for any additional header styles that aren't in the navigation.css file */
     
     /* Hero Section - Academic and data-forward */
     .hero {
@@ -661,80 +533,7 @@
       font-size: 0.9rem;
     }
     
-    /* Footer - Simple and elegant like AQR */
-    footer {
-      background-color: var(--dark-gray-1);
-      color: white;
-      padding: 4rem 0 2rem;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-    
-    .footer-about h2 {
-      color: white;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-    
-    .footer-about p {
-      color: var(--dark-gray-2);
-      font-size: 0.9rem;
-    }
-    
-    .footer-links h3 {
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
-    
-    .footer-links ul {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-    
-    .footer-links a {
-      color: var(--dark-gray-2);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
-      color: var(--gold);
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--dark-gray-2);
-      font-size: 0.8rem;
-    }
-    
-    .legal-links {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    
-    .legal-links a {
-      color: var(--dark-gray-2);
-      text-decoration: none;
-      font-size: 0.8rem;
-      margin: 0 1rem;
-    }
-    
-    .legal-links a:hover {
-      text-decoration: underline;
-    }
+    /* Footer styles now in footer.css */
     
     /* Academic Styling for Tablet & Mobile */
     @media (max-width: 992px) {
@@ -907,6 +706,17 @@
       </div>
       
       <div class="paper-grid">
+        <div class="paper-card">
+          <div class="paper-meta">
+            <div class="paper-date">April 2025</div>
+            <div class="paper-category">Economic Analysis</div>
+          </div>
+          <h3 class="paper-title">Impact of Trump's 2025 Reciprocal Tariffs on Vietnam</h3>
+          <div class="paper-authors">Research Team: Aureus Sigma Capital</div>
+          <p>A comprehensive analysis of how the 46% US tariffs will affect Vietnam's economy, examining sectoral impacts and offering strategic recommendations.</p>
+          <a href="research/economic-impact-analysis.html" class="paper-link">Read Paper →</a>
+        </div>
+        
         <div class="paper-card">
           <div class="paper-meta">
             <div class="paper-date">March 2025</div>

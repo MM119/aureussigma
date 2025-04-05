@@ -59,25 +59,101 @@
     <h1>Port Accessibility Test</h1>
     <p>This page tests whether your authentication server ports are accessible from the internet.</p>
     
+    <!-- Duck DNS Tests -->
+    <h2>Duck DNS Tests</h2>
     <div class="test-container">
-        <h2>Test 1: Duck DNS with Port 3000</h2>
-        <div class="test-url">URL: <span id="duckdnsUrl">https://aureussigma.duckdns.org:3000</span></div>
-        <button onclick="testConnection('duckdnsUrl', 'duckdnsResult')">Test Connection</button>
-        <div id="duckdnsResult" class="result pending">Not tested yet</div>
+        <h3>Test 1a: Duck DNS with Port 443 (Standard HTTPS)</h3>
+        <div class="test-url">URL: <span id="duckdns443Url">https://aureussigma.duckdns.org</span></div>
+        <button onclick="testConnection('duckdns443Url', 'duckdns443Result')">Test Connection</button>
+        <div id="duckdns443Result" class="result pending">Not tested yet</div>
     </div>
     
     <div class="test-container">
-        <h2>Test 2: Domain Name with Port 3000</h2>
-        <div class="test-url">URL: <span id="domainUrl">https://api.aureussigmacapital.com:3000</span></div>
-        <button onclick="testConnection('domainUrl', 'domainResult')">Test Connection</button>
-        <div id="domainResult" class="result pending">Not tested yet</div>
+        <h3>Test 1b: Duck DNS with Port 3000</h3>
+        <div class="test-url">URL: <span id="duckdns3000Url">https://aureussigma.duckdns.org:3000</span></div>
+        <button onclick="testConnection('duckdns3000Url', 'duckdns3000Result')">Test Connection</button>
+        <div id="duckdns3000Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 1c: Duck DNS with Port 8443</h3>
+        <div class="test-url">URL: <span id="duckdns8443Url">https://aureussigma.duckdns.org:8443</span></div>
+        <button onclick="testConnection('duckdns8443Url', 'duckdns8443Result')">Test Connection</button>
+        <div id="duckdns8443Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 1d: Duck DNS with Port 2345</h3>
+        <div class="test-url">URL: <span id="duckdns2345Url">https://aureussigma.duckdns.org:2345</span></div>
+        <button onclick="testConnection('duckdns2345Url', 'duckdns2345Result')">Test Connection</button>
+        <div id="duckdns2345Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <!-- Domain Name Tests -->
+    <h2>Domain Name Tests</h2>
+    <div class="test-container">
+        <h3>Test 2a: Domain Name with Port 443 (Standard HTTPS)</h3>
+        <div class="test-url">URL: <span id="domain443Url">https://api.aureussigmacapital.com</span></div>
+        <button onclick="testConnection('domain443Url', 'domain443Result')">Test Connection</button>
+        <div id="domain443Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 2b: Domain Name with Port 3000</h3>
+        <div class="test-url">URL: <span id="domain3000Url">https://api.aureussigmacapital.com:3000</span></div>
+        <button onclick="testConnection('domain3000Url', 'domain3000Result')">Test Connection</button>
+        <div id="domain3000Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 2c: Domain Name with Port 8443</h3>
+        <div class="test-url">URL: <span id="domain8443Url">https://api.aureussigmacapital.com:8443</span></div>
+        <button onclick="testConnection('domain8443Url', 'domain8443Result')">Test Connection</button>
+        <div id="domain8443Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 2d: Domain Name with Port 2345</h3>
+        <div class="test-url">URL: <span id="domain2345Url">https://api.aureussigmacapital.com:2345</span></div>
+        <button onclick="testConnection('domain2345Url', 'domain2345Result')">Test Connection</button>
+        <div id="domain2345Result" class="result pending">Not tested yet</div>
     </div>
 
+    <!-- Tailscale Tests -->
+    <h2>Tailscale Tests</h2>
     <div class="test-container">
-        <h2>Test 3: Tailscale FQDN with Port 3000</h2>
-        <div class="test-url">URL: <span id="tailscaleUrl">http://saphira.tail7bda3a.ts.net:3000</span></div>
-        <button onclick="testConnection('tailscaleUrl', 'tailscaleResult')">Test Connection</button>
-        <div id="tailscaleResult" class="result pending">Not tested yet</div>
+        <h3>Test 3a: Tailscale FQDN with Port 3000</h3>
+        <div class="test-url">URL: <span id="tailscale3000Url">http://saphira.tail7bda3a.ts.net:3000</span></div>
+        <button onclick="testConnection('tailscale3000Url', 'tailscale3000Result')">Test Connection</button>
+        <div id="tailscale3000Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 3b: Tailscale FQDN with Port 8443</h3>
+        <div class="test-url">URL: <span id="tailscale8443Url">http://saphira.tail7bda3a.ts.net:8443</span></div>
+        <button onclick="testConnection('tailscale8443Url', 'tailscale8443Result')">Test Connection</button>
+        <div id="tailscale8443Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 3c: Tailscale FQDN with Port 2345</h3>
+        <div class="test-url">URL: <span id="tailscale2345Url">http://saphira.tail7bda3a.ts.net:2345</span></div>
+        <button onclick="testConnection('tailscale2345Url', 'tailscale2345Result')">Test Connection</button>
+        <div id="tailscale2345Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Test 3d: Tailscale FQDN with Port 443</h3>
+        <div class="test-url">URL: <span id="tailscale443Url">http://saphira.tail7bda3a.ts.net:443</span></div>
+        <button onclick="testConnection('tailscale443Url', 'tailscale443Result')">Test Connection</button>
+        <div id="tailscale443Result" class="result pending">Not tested yet</div>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test 4: Authentication API Health Check</h2>
+        <div class="test-url">URL: <span id="apiHealthUrl">https://api.aureussigmacapital.com/api/health</span></div>
+        <button onclick="testApiHealth('apiHealthUrl', 'apiHealthResult')">Test API</button>
+        <div id="apiHealthResult" class="result pending">Not tested yet</div>
     </div>
     
     <script>
@@ -106,6 +182,32 @@
                 resultElement.className = 'result error';
                 resultElement.textContent = `Connection failed: ${error.message}. The port may not be accessible.`;
                 console.error('Connection test error:', error);
+            });
+        }
+        
+        function testApiHealth(urlElementId, resultElementId) {
+            const urlElement = document.getElementById(urlElementId);
+            const resultElement = document.getElementById(resultElementId);
+            const url = urlElement.textContent;
+            
+            resultElement.className = 'result pending';
+            resultElement.textContent = 'Testing API health...';
+            
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resultElement.className = 'result success';
+                resultElement.textContent = `API is healthy! Response: ${JSON.stringify(data)}`;
+            })
+            .catch(error => {
+                resultElement.className = 'result error';
+                resultElement.textContent = `API health check failed: ${error.message}`;
+                console.error('API health check error:', error);
             });
         }
     </script>

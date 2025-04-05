@@ -22,7 +22,8 @@ const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('he
 
 // Initialize express app
 const app = express();
-const PORT = process.env.PORT || 443; // Standard HTTPS port
+
+// Port configuration will be handled at server startup
 
 // Security Middleware
 // Apply Helmet for securing HTTP headers
@@ -204,8 +205,28 @@ app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Resource not found' });
 });
 
-// Start server
-https.createServer(httpsOptions, app).listen(PORT, '0.0.0.0', () => {
-  console.log(`HTTPS Server running on port ${PORT}`);
-  console.log(`JWT Secret: ${JWT_SECRET.substr(0, 8)}...` + ' (first 8 chars shown)');
-});
+// Define multiple port options in order of preference - starting with ones most likely to work
+const PORT_OPTIONS = [3000, 8443, 2345, 443];
+
+// Start server with port fallback mechanism
+function startServer(portIndex = 0) {
+  if (portIndex >= PORT_OPTIONS.length) {
+    console.error('Failed to start server on any of the configured ports');
+    return;
+  }
+  
+  const portToUse = process.env.PORT || PORT_OPTIONS[portIndex];
+  
+  const server = https.createServer(httpsOptions, app);
+  server.listen(portToUse, '0.0.0.0', () => {
+    console.log(`HTTPS Server running on port ${portToUse}`);
+    console.log(`JWT Secret: ${JWT_SECRET.substr(0, 8)}...` + ' (first 8 chars shown)');
+  }).on('error', (err) => {
+    console.log(`Failed to start server on port ${portToUse}: ${err.message}`);
+    console.log(`Trying next port option...`);
+    startServer(portIndex + 1);
+  });
+}
+
+// Initialize server
+startServer();
