@@ -5,1029 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aureus Sigma Capital</title>
   <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
-  <link rel="stylesheet" href="assets/css/navigation.css">
-  <link rel="stylesheet" href="assets/css/footer.css">
   <style>
-    /* Global Styles */
-    :root {
-      --gold: #D4AF37;
-      --enhanced-gold: linear-gradient(to bottom, #D4AF37, #9e8021);
-      --light-gray-1: #E5E5E5;
-      --neutral-gray: #A9A9A9;
-      --light-gray-2: #B3B3B3;
-      --dark-gray-1: #2C2C2C;
-      --dark-gray-2: #545454;
-      /* Adding complementary blues inspired by AQR's palette */
-      --deep-blue: #003366;
-      --medium-blue: #0066a1;
-      --light-blue: #a0c8e0;
-      --navy-bg: #0A2342;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
     body {
-      background-color: white;
-      color: var(--dark-gray-1);
-      line-height: 1.6;
+      background: #fff;
+      color: #222;
       font-family: 'Georgia', serif;
-    }    
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      max-width: 420px;
+      margin: 60px auto 0 auto;
+      padding: 32px 24px;
+      background: #faf9f6;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      text-align: center;
     }
-    
-    /* Typography - More academic styling inspired by AQR */
-    h1, h2, h3, h4 {
-      font-family: 'Garamond', 'Times New Roman', serif;
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-    
     h1 {
-      font-size: 2.8rem;
-      color: var(--dark-gray-1);
-      line-height: 1.2;
-    }
-    
-    h2 {
-      font-size: 2rem;
-      color: var(--dark-gray-2);
-    }
-    
-    h3 {
-      font-size: 1.5rem;
-    }
-    
-    p, li, table {
+      font-size: 2.2rem;
+      font-family: 'Garamond', 'Times New Roman', serif;
+      color: #D4AF37;
       margin-bottom: 1.2rem;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-weight: 300;
-      font-size: 1rem;
-      line-height: 1.7;
     }
-    
-    .caption {
-      font-size: 0.85rem;
-      color: var(--dark-gray-2);
-      font-style: italic;
-    }
-    
-    .gold-accent {
-      color: var(--gold);
-    }
-    
-    .blue-accent {
-      color: var(--medium-blue);
-    }
-    
-    .fancy-title {
-      display: inline-block;
-      position: relative;
-      color: var(--gold);
-    }
-    
-    .fancy-title:after {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 2px;
-      background-color: var(--gold);
-      bottom: -8px;
-      left: 0;
-    }
-    
-    .centered-title {
-      text-align: center;
-    }
-    
-    .centered-title:after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    /* Placeholder for any additional header styles that aren't in the navigation.css file */
-    
-    /* Hero Section - Academic and data-forward */
-    .hero {
-      padding-top: 120px;
-      padding-bottom: 80px;
-      position: relative;
-      overflow: hidden;
-      background-color: white;
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .hero-text {
-      flex: 0 0 50%;
-    }
-    
-    .hero-text h1 {
-      margin-bottom: 1.5rem;
-    }
-    
-    .hero-text p {
-      margin-bottom: 2rem;
+    .main-text {
       font-size: 1.1rem;
-      color: var(--dark-gray-2);
-      max-width: 90%;
+      margin-bottom: 2.2rem;
+      color: #444;
     }
-    
-    .hero-stats {
-      flex: 0 0 45%;
-      background-color: var(--light-gray-1);
-      padding: 2rem;
-      border-radius: 4px;
-    }
-    
-    .stat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--light-gray-2);
-      padding-bottom: 0.5rem;
-    }
-    
-    .stat-title {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--dark-gray-2);
-    }
-    
-    .stat-tabs {
-      display: flex;
-    }
-    
-    .stat-tab {
-      padding: 0.3rem 0.8rem;
-      margin-left: 0.5rem;
-      font-size: 0.8rem;
-      background-color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-    
-    .stat-tab.active {
-      background-color: var(--gold);
-      color: white;
-    }
-    
-    .stat-chart {
-      height: 240px;
-      background-color: white;
-      margin-bottom: 1rem;
-      border-radius: 2px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    
-    .chart-placeholder {
-      width: 90%;
-      height: 80%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200'%3E%3Cpath d='M0,150 Q250,50 500,100 T1000,50' fill='none' stroke='%23D4AF37' stroke-width='3'/%3E%3Cpath d='M0,180 Q250,120 500,140 T1000,100' fill='none' stroke='%230066a1' stroke-width='3'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    
-    .stat-legend {
-      display: flex;
-      justify-content: center;
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin: 0 1rem;
-      font-size: 0.8rem;
-    }
-    
-    .legend-color {
-      width: 12px;
-      height: 12px;
-      margin-right: 0.5rem;
-      border-radius: 2px;
-    }
-    
-    .gold-color {
-      background-color: var(--gold);
-    }
-    
-    .blue-color {
-      background-color: var(--medium-blue);
-    }
-    
-    /* Research Section - AQR style with academic papers */
-    .research {
-      padding: 5rem 0;
-      background-color: var(--light-gray-1);
-    }
-    
-    .research-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .paper-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    
-    .paper-card {
-      background-color: white;
-      padding: 1.5rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .paper-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .paper-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      font-size: 0.8rem;
-      color: var(--dark-gray-2);
-    }
-    
-    .paper-category {
-      display: inline-block;
-      padding: 0.2rem 0.5rem;
-      background-color: var(--light-blue);
-      color: var(--deep-blue);
-      border-radius: 2px;
-    }
-    
-    .paper-title {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
-    
-    .paper-authors {
-      font-style: italic;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-    
-    .paper-card p {
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .paper-link {
-      display: inline-block;
-      color: var(--medium-blue);
-      font-size: 0.9rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    
-    .paper-link:hover {
-      text-decoration: underline;
-    }
-    
-    /* Strategies Section - AQR-style with more data and charts */
-    .strategies {
-      padding: 5rem 0;
-    }
-    
-    .strategy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-    }
-    
-    .strategy-card {
-      display: flex;
-    }
-    
-    .strategy-icon {
-      flex: 0 0 60px;
-      font-size: 2rem;
-      color: var(--gold);
-      margin-right: 1.5rem;
-      font-family: serif;
-    }
-    
-    .strategy-content h3 {
-      margin-bottom: 1rem;
-    }
-    
-    .strategy-stats {
-      display: flex;
-      margin-top: 1.5rem;
-    }
-    
-    .strategy-stat {
-      margin-right: 2rem;
-    }
-    
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--dark-gray-1);
-      margin-bottom: 0.3rem;
-    }
-    
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--dark-gray-2);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    /* Team Section - Faculty-style presentation like AQR */
-    .team {
-      padding: 5rem 0;
-      background-color: white;
-      border-top: 1px solid var(--light-gray-1);
-    }
-    
-    .team-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-    }
-    
-    .team-member {
-      display: flex;
-    }
-    
-    .member-photo {
-      flex: 0 0 120px;
-      height: 150px;
-      margin-right: 1.5rem;
-      background-color: var(--light-gray-1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 3rem;
-      color: var(--dark-gray-2);
-    }
-    
-    .member-info h3 {
-      margin-bottom: 0.5rem;
-    }
-    
-    .member-bio {
-      font-size: 0.9rem;
-    }
-    
-    .publications-link {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: var(--medium-blue);
-      font-size: 0.85rem;
-      text-decoration: none;
-    }
-    
-    .publications-link:hover {
-      text-decoration: underline;
-    }
-    
-    /* Educational Resources Section - Similar to AQR's learning center */
-    .education {
-      padding: 5rem 0;
-      background-color: var(--light-gray-1);
-    }
-    
-    .education-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .education-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    
-    .resource-card {
-      background-color: white;
-      padding: 1.5rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .resource-icon {
-      width: 50px;
-      height: 50px;
-      background-color: var(--light-blue);
-      color: var(--deep-blue);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .founder-photo {
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
+      object-fit: cover;
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
+      border: 3px solid #D4AF37;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
-    
-    .resource-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-    }
-    
-    .resource-card p {
-      font-size: 0.9rem;
-      flex: 1;
-    }
-    
-    /* Contact Section - Clean and professional */
-    .contact {
-      padding: 5rem 0;
-      background-color: white;
-      border-top: 1px solid var(--light-gray-1);
-    }
-    
-    .contact-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    
-    .contact-form form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    
-    .form-group {
-      margin-bottom: 0;
-    }
-    
-    .form-group.full-width {
-      grid-column: span 2;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--dark-gray-2);
-      font-size: 0.9rem;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid var(--light-gray-2);
-      font-size: 1rem;
-      background-color: var(--light-gray-1);
-      border: none;
-    }
-    
-    textarea.form-control {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
     .contact-info {
-      padding-left: 2rem;
-      border-left: 1px solid var(--light-gray-1);
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #333;
     }
-    
-    .info-item {
-      margin-bottom: 2rem;
+    .contact-info p {
+      margin: 0.5rem 0;
     }
-    
-    .info-item h3 {
-      color: var(--dark-gray-1);
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
+    .email-link {
+      color: #0066a1;
+      text-decoration: none;
+      font-weight: 500;
     }
-    
-    .info-item p {
-      color: var(--dark-gray-2);
-      font-size: 0.9rem;
+    .email-link:hover {
+      text-decoration: underline;
     }
-    
-    /* Footer styles now in footer.css */
-    
-    /* Academic Styling for Tablet & Mobile */
-    @media (max-width: 992px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hero-content {
+    .founders {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .founder-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 200px;
+      margin-bottom: 1.5rem;
+    }
+    .founder-name {
+      font-weight: bold;
+      margin-top: 0.7rem;
+      margin-bottom: 0.3rem;
+      font-size: 1.08rem;
+      color: #222;
+    }
+    .founder-desc {
+      font-size: 0.97rem;
+      color: #555;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .founders {
         flex-direction: column;
+        gap: 1.5rem;
       }
-      
-      .hero-text, .hero-stats {
-        flex: 0 0 100%;
-      }
-      
-      .hero-stats {
-        margin-top: 3rem;
-      }
-      
-      .paper-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .strategy-grid, .team-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .education-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .contact-grid, .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .contact-info {
-        padding-left: 0;
-        border-left: none;
-        padding-top: 2rem;
-        border-top: 1px solid var(--light-gray-1);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .paper-grid, .education-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .team-member {
-        flex-direction: column;
-      }
-      
-      .member-photo {
-        margin-right: 0;
-        margin-bottom: 1.5rem;
-      }
-      
-      .contact-form form {
-        grid-template-columns: 1fr;
-      }
-      
-      .form-group.full-width {
-        grid-column: span 1;
+      .founder-card {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">
-          <img src="assets/images/logo.jpg" alt="Aureus Sigma Capital" class="logo-icon" style="width: auto; height: 50px;">
-          <div class="logo-text">
-            Aureus
-            <span>Sigma Capital</span>
-          </div>
-        </a>
-        
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li class="dropdown">
-            <a href="#strategies">Strategies</a>
-            <div class="dropdown-content">
-              <a href="#">Statistical Arbitrage</a>
-              <a href="#">Machine Learning</a>
-              <a href="#">Risk Premia</a>
-              <a href="#">Multi-Factor Models</a>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#research">Research</a>
-            <div class="dropdown-content">
-              <a href="#">Academic Papers</a>
-              <a href="#">White Papers</a>
-              <a href="#">Market Commentary</a>
-              <a href="#">Data Library</a>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#education">Education</a>
-            <div class="dropdown-content">
-              <a href="#">Factor Investing</a>
-              <a href="#">Systematic Strategies</a>
-              <a href="#">Risk Management</a>
-              <a href="#">Glossary</a>
-            </div>
-          </li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        
-        <a href="login.html" class="btn btn-primary">Client Portal</a>
-      </nav>
+  <div class="container">
+    <h1>Aureus Sigma Capital</h1>
+    <div class="main-text">
+      Quantitative investment management, driven by research and integrity.<br>
+      <br>
+      Systematic strategies for emerging markets.
     </div>
-  </header>
-
-  <!-- Hero Section - AQR-inspired with data focus -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>Quantitative Excellence Through <span class="gold-accent">Systematic Investing</span></h1>
-          <p>Aureus Sigma Capital applies rigorous academic research and advanced mathematics to deliver consistent risk-adjusted returns across market cycles.</p>
-          <button class="btn btn-primary">Explore Our Approach</button>
-        </div>
-        
-        <div class="hero-stats">
-          <div class="stat-header">
-            <div class="stat-title">Strategy Performance</div>
-            <div class="stat-tabs">
-              <button class="stat-tab active">1Y</button>
-              <button class="stat-tab">3Y</button>
-              <button class="stat-tab">5Y</button>
-              <button class="stat-tab">YTD</button>
-            </div>
-          </div>
-          
-          <div class="stat-chart">
-            <div class="chart-placeholder"></div>
-            <div class="stat-legend">
-              <div class="legend-item">
-                <div class="legend-color gold-color"></div>
-                <div>Multi-Factor</div>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color blue-color"></div>
-                <div>Benchmark</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="caption">
-            Hypothetical performance shown for illustrative purposes only. Past performance is not indicative of future results.
-          </div>
-        </div>
+    <div class="founders">
+      <div class="founder-card">
+        <img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" class="founder-photo">
+        <div class="founder-name">Minh Mai, CFA</div>
+        <div class="founder-desc">Specialist in risk modeling and emerging markets. Formerly at Fujiwara Capital. CFA charterholder, ESCP Europe alum.</div>
+      </div>
+      <div class="founder-card">
+        <img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" class="founder-photo">
+        <div class="founder-name">Duc Nguyen</div>
+        <div class="founder-desc">Veteran in investment banking and private equity. Ex-CEO Techcom Capital, advisor at BPEA. Corvinus University alum.</div>
       </div>
     </div>
-  </section>
-
-  <!-- Research Section - Academic paper format like AQR -->
-  <section id="research" class="research">
-    <div class="container">
-      <div class="research-header">
-        <h2 class="fancy-title centered-title">Latest Research</h2>
-        <p>Our team publishes original research exploring market dynamics and quantitative methodologies.</p>
-      </div>
-      
-      <div class="paper-grid">
-        <div class="paper-card">
-          <div class="paper-meta">
-            <div class="paper-date">April 2025</div>
-            <div class="paper-category">Economic Analysis</div>
-          </div>
-          <h3 class="paper-title">Impact of Trump's 2025 Reciprocal Tariffs on Vietnam</h3>
-          <div class="paper-authors">Research Team: Aureus Sigma Capital</div>
-          <p>A comprehensive analysis of how the 46% US tariffs will affect Vietnam's economy, examining sectoral impacts and offering strategic recommendations.</p>
-          <a href="research/economic-impact-analysis.html" class="paper-link">Read Paper →</a>
-        </div>
-        
-        <div class="paper-card">
-          <div class="paper-meta">
-            <div class="paper-date">March 2025</div>
-            <div class="paper-category">Factor Investing</div>
-          </div>
-          <h3 class="paper-title">Beyond Value and Momentum: Exploring Alternative Risk Premia</h3>
-          <div class="paper-authors">Chen, A., Kwan, R., & Goldstein, S.</div>
-          <p>This paper examines alternative risk premia beyond traditional value and momentum factors, exploring their persistence across different market regimes.</p>
-          <a href="#" class="paper-link">Read Paper →</a>
-        </div>
-        
-        <div class="paper-card">
-          <div class="paper-meta">
-            <div class="paper-date">February 2025</div>
-            <div class="paper-category">Machine Learning</div>
-          </div>
-          <h3 class="paper-title">Feature Selection in Quantitative Trading: A Comparative Analysis</h3>
-          <div class="paper-authors">Kwan, R., & Torres, M.</div>
-          <p>We compare various feature selection techniques in machine learning models for quantitative trading, emphasizing interpretability alongside performance.</p>
-          <a href="#" class="paper-link">Read Paper →</a>
-        </div>
-        
-        <div class="paper-card">
-          <div class="paper-meta">
-            <div class="paper-date">January 2025</div>
-            <div class="paper-category">Risk Management</div>
-          </div>
-          <h3 class="paper-title">Tail Risk Hedging: Options vs. Alternative Strategies</h3>
-          <div class="paper-authors">Goldstein, S., Chen, A., & Torres, M.</div>
-          <p>This study presents a framework for evaluating the cost-effectiveness of different tail risk hedging approaches across various market environments.</p>
-          <a href="#" class="paper-link">Read Paper →</a>
-        </div>
-      </div>
+    <div class="contact-info">
+      <p>15 Le Thanh Ton<br>Ben Nghe, District 1<br>Ho Chi Minh City, Vietnam</p>
+      <p><a href="mailto:contact@ascap.vn" class="email-link">contact@ascap.vn</a></p>
     </div>
-  </section>
-
-  <!-- Strategies Section - AQR-style with data elements -->
-  <section id="strategies" class="strategies">
-    <div class="container">
-      <h2 class="fancy-title">Investment Strategies</h2>
-      <p>Our systematic approach is grounded in empirical evidence, financial theory, and advanced mathematics.</p>
-      
-      <div class="strategy-grid">
-        <div class="strategy-card">
-          <div class="strategy-icon">Σ</div>
-          <div class="strategy-content">
-            <h3>Statistical Arbitrage</h3>
-            <p>Exploiting price differentials between related securities through mean-reversion models and pair trading strategies with rigorous statistical validation.</p>
-            <div class="strategy-stats">
-              <div class="strategy-stat">
-                <div class="stat-value">0.76</div>
-                <div class="stat-label">Sharpe Ratio</div>
-              </div>
-              <div class="strategy-stat">
-                <div class="stat-value">4.2%</div>
-                <div class="stat-label">Volatility</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="strategy-card">
-          <div class="strategy-icon">∞</div>
-          <div class="strategy-content">
-            <h3>Machine Learning</h3>
-            <p>Leveraging neural networks, ensemble methods, and natural language processing to identify complex patterns in financial data and market sentiment.</p>
-            <div class="strategy-stats">
-              <div class="strategy-stat">
-                <div class="stat-value">0.82</div>
-                <div class="stat-label">Sharpe Ratio</div>
-              </div>
-              <div class="strategy-stat">
-                <div class="stat-value">6.8%</div>
-                <div class="stat-label">Volatility</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="strategy-card">
-          <div class="strategy-icon">φ</div>
-          <div class="strategy-content">
-            <h3>Risk Premia</h3>
-            <p>Capturing systematic risk factors across asset classes using sophisticated factor models with robust portfolio construction techniques and risk controls.</p>
-            <div class="strategy-stats">
-              <div class="strategy-stat">
-                <div class="stat-value">0.91</div>
-                <div class="stat-label">Sharpe Ratio</div>
-              </div>
-              <div class="strategy-stat">
-                <div class="stat-value">5.1%</div>
-                <div class="stat-label">Volatility</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="strategy-card">
-          <div class="strategy-icon">μ</div>
-          <div class="strategy-content">
-            <h3>Multi-Factor Models</h3>
-            <p>Integrating multiple alpha sources in a unified framework, with dynamic allocation based on market regime identification and risk budgeting principles.</p>
-            <div class="strategy-stats">
-              <div class="strategy-stat">
-                <div class="stat-value">0.88</div>
-                <div class="stat-label">Sharpe Ratio</div>
-              </div>
-              <div class="strategy-stat">
-                <div class="stat-value">7.3%</div>
-                <div class="stat-label">Volatility</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Section - Faculty-style presentation like AQR -->
-  <section id="team" class="team">
-    <div class="container">
-      <div class="team-header">
-        <h2 class="fancy-title centered-title">Investment Team</h2>
-        <p>Our team combines academic excellence with practical market experience.</p>
-      </div>
-      
-      <div class="team-grid">
-        <div class="team-member">
-          <div class="member-photo"><img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" style="width: 100%; height: 100%; object-fit: cover;"></div>
-          <div class="member-info">
-            <h3>Minh Mai, CFA</h3>
-            <p class="member-bio">Mr. Minh specializes in developing risk models to detect systemic risk in emerging markets, with a focus on Latin America and ASEAN regions. At Fujiwara Capital, he developed proprietary risk frameworks that enhanced portfolio performance for a $600M hedge fund by combining news screening techniques with rigorous fundamental analysis. His innovative approach integrates macroeconomic indicators with company-specific metrics to identify opportunities in emerging market equities that traditional models often miss. A CFA charterholder with a Master from ESCP Europe, Mr. Minh leverages his expertise in risk modeling and cross-border capital flows to develop investment strategies that capture market inefficiencies unique to developing economies.</p>
-            <a href="https://www.linkedin.com/in/minhducmai/" class="publications-link" target="_blank">View Profile</a>
-          </div>
-        </div>
-        
-        <div class="team-member">
-          <div class="member-photo"><img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" style="width: 100%; height: 100%; object-fit: cover;"></div>
-          <div class="member-info">
-            <h3>Duc Nguyen</h3>
-            <p class="member-bio">Mr. Duc brings extraordinary depth of experience across elite financial institutions in Vietnam and internationally. His distinguished career includes key leadership roles as CEO of Techcom Capital, Investment Banking Director at Techcombank, and Chief Financial Officer at several major corporations including Cotecons Group, Kusto Cement, and REFICO. As Strategic Advisor at Baring Private Equity Asia (BPEA), he guided investment strategies across Southeast Asian markets. With a Master's in Economics from Corvinus University (Budapest), Mr. Duc has consistently delivered exceptional investment performance through robust quantitative frameworks. His unique perspective from working across diverse financial sectors has shaped his approach to systematic investing in emerging markets.</p>
-            <a href="https://vn.linkedin.com/in/duc-nguyen-1b236836" class="publications-link" target="_blank">View Profile</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Educational Resources Section - Similar to AQR's learning center -->
-  <section id="education" class="education">
-    <div class="container">
-      <div class="education-header">
-        <h2 class="fancy-title centered-title">Educational Resources</h2>
-        <p>Explore the fundamentals of quantitative investing and systematic strategies.</p>
-      </div>
-      
-      <div class="education-grid">
-        <div class="resource-card">
-          <div class="resource-icon">F</div>
-          <h3>Factor Investing</h3>
-          <p>An introduction to systematic risk factors that drive returns across asset classes, including value, momentum, quality, and low volatility.</p>
-          <a href="#" class="paper-link">Learn More →</a>
-        </div>
-        
-        <div class="resource-card">
-          <div class="resource-icon">S</div>
-          <h3>Systematic Strategies</h3>
-          <p>Understanding the benefits of rules-based investment approaches that remove emotional bias from decision-making processes.</p>
-          <a href="#" class="paper-link">Learn More →</a>
-        </div>
-        
-        <div class="resource-card">
-          <div class="resource-icon">R</div>
-          <h3>Risk Management</h3>
-          <p>Exploring sophisticated techniques for measuring, monitoring, and mitigating various forms of financial risk in quantitative portfolios.</p>
-          <a href="#" class="paper-link">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section - Clean and professional -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="contact-header">
-        <h2 class="fancy-title centered-title">Contact Us</h2>
-        <p>Reach out to our team for more information about our investment strategies and services.</p>
-      </div>
-      
-      <div class="contact-grid">
-        <div class="contact-form">
-          <form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="organization">Organization</label>
-              <input type="text" id="organization" class="form-control">
-            </div>
-            
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" class="form-control">
-            </div>
-            
-            <div class="form-group full-width">
-              <label for="inquiry">Inquiry Type</label>
-              <select id="inquiry" class="form-control">
-                <option value="">Select an option</option>
-                <option value="investor">Investor Relations</option>
-                <option value="research">Research Collaboration</option>
-                <option value="careers">Careers</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div class="form-group full-width">
-              <label for="message">Message</label>
-              <textarea id="message" class="form-control" required></textarea>
-            </div>
-            
-            <div class="form-group full-width">
-              <button type="submit" class="btn btn-primary">Submit Inquiry</button>
-            </div>
-          </form>
-        </div>
-        
-        <div class="contact-info">
-          <div class="info-item">
-            <h3>Headquarters</h3>
-            <p>15 Le Thanh Ton<br>Ben Nghe, District 1<br>Ho Chi Minh City<br>Vietnam</p>
-          </div>
-          
-          <div class="info-item">
-            <h3>Investor Relations</h3>
-            <p>investors@aureussigma.com<br>+1 (212) 555-7890</p>
-          </div>
-          
-          <div class="info-item">
-            <h3>Research</h3>
-            <p>research@aureussigma.com<br>+1 (212) 555-7891</p>
-          </div>
-          
-          <div class="info-item">
-            <h3>Careers</h3>
-            <p>We're always looking for exceptional talent in quantitative research, software engineering, and mathematical finance.</p>
-            <a href="#" class="paper-link">View Open Positions →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer - Simple and elegant like AQR -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <h2>Aureus Sigma Capital</h2>
-          <p>A quantitative investment management firm dedicated to delivering superior risk-adjusted returns through systematic strategies backed by rigorous research and advanced mathematics.</p>
-        </div>
-        
-        <div class="footer-links">
-          <h3>Strategies</h3>
-          <ul>
-            <li><a href="#">Statistical Arbitrage</a></li>
-            <li><a href="#">Machine Learning</a></li>
-            <li><a href="#">Risk Premia</a></li>
-            <li><a href="#">Multi-Factor Models</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-links">
-          <h3>Research</h3>
-          <ul>
-            <li><a href="#">Academic Papers</a></li>
-            <li><a href="#">White Papers</a></li>
-            <li><a href="#">Market Commentary</a></li>
-            <li><a href="#">Data Library</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-links">
-          <h3>Company</h3>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <div class="legal-links">
-          <a href="#">Terms of Use</a> • <a href="#">Privacy Policy</a> • <a href="#">Disclaimers</a> • <a href="#">Form ADV</a>
-        </div>
-        
-        <div class="copyright">
-          <p>&copy; 2025 Aureus Sigma Capital. All rights reserved. Past performance is not indicative of future results. Investment involves risk. Please read all offering documents before investing.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div>
 </body>
 </html>
