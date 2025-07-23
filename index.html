@@ -18,12 +18,13 @@
       align-items: stretch;
     }
     .container {
-      max-width: 900px;
-      margin: 60px auto 0 auto;
-      padding: 48px 48px 32px 48px;
-      background: #faf9f6;
-      border-radius: 16px;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+      width: 100vw;
+      max-width: 100vw;
+      margin: 0;
+      padding: 60px 5vw 32px 5vw;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
       text-align: left;
     }
     .logo-img {
@@ -55,6 +56,12 @@
       margin-bottom: 1.1rem;
       border: 3px solid #D4AF37;
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .founder-card .founder-photo:first-child {
+      filter: grayscale(100%);
+    }
+    .founder-card:first-child .founder-photo {
+      filter: grayscale(100%);
     }
     .founder-name {
       font-weight: bold;
@@ -103,8 +110,7 @@
     }
     @media (max-width: 900px) {
       .container {
-        max-width: 98vw;
-        padding: 24px 8vw 24px 8vw;
+        padding: 24px 4vw 24px 4vw;
       }
       .founders {
         gap: 2rem;
@@ -145,12 +151,12 @@
       <div class="founder-card">
         <img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" class="founder-photo">
         <div class="founder-name">Minh Mai, CFA</div>
-        <div class="founder-desc">Specialist in risk modeling and emerging markets. Formerly at Fujiwara Capital. CFA charterholder, ESCP Europe alum.</div>
+        <div class="founder-desc">Specialist in risk modeling and emerging markets. Formerly at Fujiwara Capital, where he developed proprietary risk frameworks for a $600M hedge fund. Minh integrates global academic rigor with local market insight to design systematic investment strategies for Vietnam. CFA charterholder, ESCP Europe alum.</div>
       </div>
       <div class="founder-card">
         <img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" class="founder-photo">
         <div class="founder-name">Duc Nguyen</div>
-        <div class="founder-desc">Veteran in investment banking and private equity. Ex-CEO Techcom Capital, advisor at BPEA. Corvinus University alum.</div>
+        <div class="founder-desc">Veteran in investment banking and private equity. Ex-CEO of Techcom Capital, Investment Banking Director at Techcombank, and CFO at leading Vietnamese corporates. As Strategic Advisor at Baring Private Equity Asia (BPEA), Duc helped shape cross-border investment strategies and fostered international best practices in Vietnam’s financial sector. Corvinus University alum.</div>
       </div>
     </div>
     <div class="contact-info">
