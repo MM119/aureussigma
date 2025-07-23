@@ -27,11 +27,31 @@
       box-shadow: none;
       text-align: left;
     }
+    .header-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2vw;
+      width: 100%;
+      margin-bottom: 1.2rem;
+    }
     .logo-img {
       width: 210px;
       height: auto;
       display: block;
-      margin-bottom: 1.2rem;
+    }
+    .tagline {
+      font-size: 1.25rem;
+      color: #bfa12c;
+      font-family: 'Garamond', 'Times New Roman', serif;
+      letter-spacing: 0.04em;
+      text-align: left;
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
     }
     .main-title {
       font-size: 2.7rem;
@@ -155,8 +175,9 @@
     .asc-desc {
       font-size: 1.13rem;
       color: #444;
-      margin-bottom: 1.2rem;
-      max-width: 700px;
+      margin-bottom: 2.2rem;
+      width: 100%;
+      max-width: none;
       line-height: 1.7;
       text-align: left;
     }
@@ -168,82 +189,25 @@
       letter-spacing: 0.04em;
       text-align: left;
     }
-    @media (max-width: 900px) {
-      .container {
-        padding: 24px 4vw 24px 4vw;
-      }
-      .founders {
-        flex-direction: column;
-        gap: 1.5rem;
-        max-width: 100vw;
-      }
-      .founder-card {
-        flex-direction: row;
-        max-width: 100vw;
-        min-width: 0;
-        gap: 1rem;
-      }
-      .founder-photo {
-        width: 80px;
-        height: 80px;
-      }
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 12px 2vw 12px 2vw;
-      }
-      .main-title {
-        font-size: 2rem;
-      }
-      .founders {
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .founder-card {
-        flex-direction: row;
-        align-items: flex-start;
-        max-width: 100vw;
-        gap: 0.7rem;
-      }
-      .founder-photo {
-        width: 60px;
-        height: 60px;
-      }
-    }
-    .main-row {
+    .founders-wide {
       display: flex;
       flex-direction: row;
       gap: 4vw;
       width: 100%;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-    .main-col {
-      flex: 1 1 0;
-      min-width: 0;
-    }
-    .main-col-left {
-      max-width: 540px;
-    }
-    .main-col-right {
-      min-width: 260px;
-      max-width: 340px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .founders-vertical {
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-      width: 100%;
+      justify-content: space-between;
+      align-items: stretch;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
     }
     .founder-card {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 1.2rem;
-      width: 100%;
+      flex: 1 1 320px;
+      min-width: 260px;
+      max-width: 600px;
+      background: none;
     }
     .founder-photo {
       width: 100px;
@@ -281,19 +245,48 @@
       line-height: 1.5;
     }
     @media (max-width: 900px) {
-      .main-row {
-        flex-direction: column;
-        gap: 2.5rem;
+      .container {
+        padding: 24px 4vw 24px 4vw;
       }
-      .main-col-left, .main-col-right {
+      .founders {
+        flex-direction: column;
+        gap: 1.5rem;
         max-width: 100vw;
       }
-      .main-col-right {
-        align-items: flex-start;
-        margin-top: 0.5rem;
+      .founder-card {
+        flex-direction: row;
+        max-width: 100vw;
+        min-width: 0;
+        gap: 1rem;
       }
-      .founders-vertical {
+      .founder-photo {
+        width: 80px;
+        height: 80px;
+      }
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+      .logo-img {
+        width: 120px;
+      }
+      .tagline {
+        font-size: 1.1rem;
+        justify-content: flex-start;
+        min-width: 0;
+      }
+      .asc-desc {
+        margin-bottom: 1.5rem;
+      }
+      .founders-wide {
+        flex-direction: column;
         gap: 1.2rem;
+      }
+      .founder-card {
+        max-width: 100vw;
+        min-width: 0;
+        gap: 1rem;
       }
       .founder-photo {
         width: 80px;
@@ -301,18 +294,42 @@
       }
     }
     @media (max-width: 600px) {
-      .main-row {
+      .container {
+        padding: 12px 2vw 12px 2vw;
+      }
+      .main-title {
+        font-size: 2rem;
+      }
+      .founders {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.2rem;
       }
-      .main-col-left, .main-col-right {
-        max-width: 100vw;
-      }
-      .main-col-right {
+      .founder-card {
+        flex-direction: row;
         align-items: flex-start;
-        margin-top: 0.5rem;
+        max-width: 100vw;
+        gap: 0.7rem;
       }
-      .founders-vertical {
+      .founder-photo {
+        width: 60px;
+        height: 60px;
+      }
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .logo-img {
+        width: 80px;
+      }
+      .tagline {
+        font-size: 1rem;
+      }
+      .asc-desc {
+        font-size: 1rem;
+      }
+      .founders-wide {
+        flex-direction: column;
         gap: 1rem;
       }
       .founder-card {
@@ -327,31 +344,26 @@
 </head>
 <body>
   <div class="container">
-    <img src="assets/images/logo.jpg" alt="Aureus Sigma Capital Logo" class="logo-img">
-    <h1 class="main-title">Aureus Sigma Capital</h1>
-    <div class="main-row">
-      <div class="main-col main-col-left">
-        <div class="asc-desc">
-          A quantitative investment research house dedicated to bringing global standards of rigorous academic research to Vietnam’s financial markets. We combine international best practices with deep local insight to deliver systematic, data-driven investment solutions tailored for Vietnam.
+    <div class="header-row">
+      <img src="assets/images/logo.jpg" alt="Aureus Sigma Capital Logo" class="logo-img">
+      <div class="tagline">Rigorous. Focused. Premium.</div>
+    </div>
+    <div class="asc-desc">
+      A quantitative investment research house dedicated to bringing global standards of rigorous academic research to Vietnam’s financial markets. We combine international best practices with deep local insight to deliver systematic, data-driven investment solutions tailored for Vietnam.
+    </div>
+    <div class="founders-wide">
+      <div class="founder-card">
+        <img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" class="founder-photo">
+        <div class="founder-info">
+          <div class="founder-name">Minh Mai, CFA</div>
+          <div class="founder-desc">Investment banking. ex Global Macro hedge fund. ESCP Europe alum.</div>
         </div>
-        <div class="tagline">Rigorous. Focused. Premium.</div>
       </div>
-      <div class="main-col main-col-right">
-        <div class="founders-vertical">
-          <div class="founder-card">
-            <img src="assets/images/team/minh-mai.png" alt="Minh Mai, CFA" class="founder-photo">
-            <div class="founder-info">
-              <div class="founder-name">Minh Mai, CFA</div>
-              <div class="founder-desc">Investment banking. ex Global Macro hedge fund. ESCP Europe alum.</div>
-            </div>
-          </div>
-          <div class="founder-card">
-            <img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" class="founder-photo">
-            <div class="founder-info">
-              <div class="founder-name">Duc Nguyen</div>
-              <div class="founder-desc">Financial Engineer. Investment banking & private equity. Ex-CEO Techcom Capital. Corvinus alum.</div>
-            </div>
-          </div>
+      <div class="founder-card">
+        <img src="assets/images/team/duc-nguyen.png" alt="Duc Nguyen" class="founder-photo">
+        <div class="founder-info">
+          <div class="founder-name">Duc Nguyen</div>
+          <div class="founder-desc">Financial Engineer. Investment banking & private equity. Ex-CEO Techcom Capital. Corvinus alum.</div>
         </div>
       </div>
     </div>
