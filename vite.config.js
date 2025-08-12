@@ -16,4 +16,6 @@ export default defineConfig({
       },
     },
   },
+  // Copy .nojekyll file to dist
+  publicDir: 'public',
 })
