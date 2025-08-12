@@ -1,5 +1,6 @@
 name: Deploy static site to Pages
 
+# Trigger on push to main branch or manual dispatch
 on:
   push:
     branches: ["main"]
