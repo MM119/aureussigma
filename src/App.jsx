@@ -388,6 +388,7 @@ export default function App() {
 
 
   const [logoOk, setLogoOk] = useState(true);
+  const [showCookieNotice, setShowCookieNotice] = useState(true);
 
   // Minimalist: only set active section when user clicks a nav item
   const setActiveByClick = (id) => {
@@ -892,14 +893,21 @@ export default function App() {
       </footer>
 
       {/* Cookie notice */}
-      <div className="fixed bottom-4 inset-x-0 px-4 z-40">
-        <div className="mx-auto max-w-7xl">
-          <div className="rounded-xl border border-slate-200 bg-white/95 backdrop-blur p-3 shadow-sm flex items-center justify-between gap-3">
-            <p className="text-xs text-slate-600">{t.cookie.text}</p>
-            <button className="px-3 py-1.5 text-xs rounded-md bg-slate-900 text-white hover:bg-slate-800">{t.cookie.accept}</button>
+      {showCookieNotice && (
+        <div className="fixed bottom-4 inset-x-0 px-4 z-40">
+          <div className="mx-auto max-w-7xl">
+            <div className="rounded-xl border border-slate-200 bg-white/95 backdrop-blur p-3 shadow-sm flex items-center justify-between gap-3">
+              <p className="text-xs text-slate-600">{t.cookie.text}</p>
+              <button 
+                onClick={() => setShowCookieNotice(false)}
+                className="px-3 py-1.5 text-xs rounded-md bg-slate-900 text-white hover:bg-slate-800"
+              >
+                {t.cookie.accept}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Qualified investor gate modal */}
       {showGate && (
