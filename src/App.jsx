@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 
 // Static public asset paths
-const LOGO_SRC = "/aureussigma/asc-logo-transparent.png";
+const LOGO_SRC = "/asc-logo-transparent.png";
 const TEAM_PHOTOS = {
   founder: "/team-duc.jpg",
   cofounder: "/team-minh.jpg" // add this file to public/
