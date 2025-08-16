@@ -236,7 +236,7 @@ const i18n = {
         "Hạ tầng đáng tin cậy, giám sát 24/7 với quy trình dữ liệu và thực thi tự động cùng cơ chế bảo vệ.",
       research: "Nghiên cứu",
       researchDesc:
-        "Khung nghiên cứu định lượng kết hợp phân tích thống kê và học máy.",
+        "Khung nghiên cứu định lượng kết hợp phân tích thống kê và máy học.",
       portfolio: "Quản lý rủi ro",
       portfolioDesc:
         "Khung rủi ro toàn diện với hạn mức vị thế và kiểm soát drawdown.",
@@ -285,10 +285,10 @@ const i18n = {
       title: "Triết lý",
       subtitle: "Nguyên tắc vận hành",
       items: [
-        { title: "Tính toàn vẹn dữ liệu & quản trị", desc: "Nguồn dữ liệu được kiểm chứng, quy trình tái lập, khả năng kiểm toán." },
-        { title: "Phương pháp nghiên cứu vững chắc", desc: "Kỷ luật out-of-sample, lựa chọn mô hình có nhận thức rủi ro, chú ý sức chứa chiến lược." },
-        { title: "Xây dựng danh mục ưu tiên rủi ro", desc: "Hạn mức, đa dạng hóa, kiểm soát drawdown, giám sát rủi ro mô hình." },
-        { title: "Vận hành bền bỉ", desc: "Giám sát, dự phòng, kế hoạch liên tục kinh doanh." }
+        { title: "Tính toàn vẹn dữ liệu & quản trị", desc: "Nguồn dữ liệu được kiểm chứng, minh bạch và có thể tái lập & kiểm toán." },
+        { title: "Nghiên cứu & phát triển chặt chẽ", desc: "Kiểm chứng out-of-sample, lựa chọn mô hình nhận diện rủi ro, chú trọng dung lượng chiến lược đầu tư (investment capacity)." },
+        { title: "Ưu tiên quản trị rủi ro", desc: "Đa dạng hóa, giới hạn tỷ trọng, kiểm soát drawdown và giám sát rủi ro mô hình." },
+        { title: "Vận hành bền vững", desc: "Giám sát liên tục, dự phòng rủi ro và kế hoạch duy trì hoạt động." }
       ]
     },
     cookie: {
