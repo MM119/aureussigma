@@ -106,7 +106,7 @@ const i18n = {
         "Broker and venue connectivity with execution oversight.",
       compliance: "Regulatory",
       complianceDesc:
-        "Separately managed accounts and any products, if offered, will be provided through appropriately licensed entities (e.g., in collaboration with FIDES Asset Management) and are subject to jurisdictional requirements.",
+        "Separately managed accounts and any products, if offered, will be provided through appropriately licensed entities and are subject to jurisdictional requirements.",
     },
     research: {
       title: "Research",
@@ -139,7 +139,7 @@ const i18n = {
     legal: {
       title: "Important Information",
       body:
-        "For institutional/professional investors only; not for retail distribution. This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities or investment services in any jurisdiction. Aureus Sigma Capital engages in proprietary trading and research. Separately managed accounts and any products, if offered, would be made only through appropriately licensed entities (including collaboration with FIDES Asset Management) and pursuant to definitive offering materials. Investment strategies involve risk; past performance (including backtested results) is not indicative of future results. Access to materials may be restricted based on investor status and jurisdiction.",
+        "For institutional/professional investors only; not for retail distribution. This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities or investment services in any jurisdiction. Aureus Sigma Capital engages in proprietary trading and research. Separately managed accounts and any products, if offered, would be made only through appropriately licensed entities and pursuant to definitive offering materials. Investment strategies involve risk; past performance (including backtested results) is not indicative of future results. Access to materials may be restricted based on investor status and jurisdiction.",
       rights: "© " + new Date().getFullYear() + " Aureus Sigma Capital. All rights reserved.",
     },
     principles: {
@@ -570,7 +570,7 @@ export default function App() {
                   <span className="font-mono text-sm font-medium text-slate-900">8-15%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Max Drawdown Control</span>
+                  <span className="text-sm text-slate-600">Drawdown Control</span>
                   <span className="font-mono text-sm font-medium text-slate-900">&lt;8%</span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -850,7 +850,7 @@ export default function App() {
               </button>
             </div>
             <div className="mt-6 text-center">
-              <p className="text-sm text-slate-600">Email: investors@aureussigma.com</p>
+              <p className="text-sm text-slate-600">Email: contact@aureussigmacapital.com</p>
               <p className="text-xs text-slate-500 mt-2">Information provided is intended for institutional/professional investors only.</p>
             </div>
           </div>
