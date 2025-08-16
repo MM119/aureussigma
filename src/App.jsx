@@ -729,7 +729,7 @@ export default function App() {
               </div>
               <p className="mt-2 text-slate-600 text-sm">{t.strategies.mmDesc}</p>
               <div className="mt-4 space-y-2 text-xs">
-                {t.strategies.bulletsGlobal.map((b) => (
+                {t.strategies.bullets.map((b) => (
                   <div key={b} className="flex items-center gap-2">
                     <div className="h-1 w-1 bg-slate-400 rounded-full" />
                     <span className="text-slate-600">{b}</span>
