@@ -616,19 +616,19 @@ export default function App() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.marketsCovered}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">VN Equity</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'VN Equity' : 'Việt Nam'}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.rebalanceFrequency}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">Dynamic</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'Dynamic' : 'Linh hoạt'}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.leverageUsage}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">None</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'None' : 'Không'}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.focusMarket}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">Vietnam</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'Vietnam' : 'Việt Nam'}</span>
                 </div>
               </div>
             </div>
