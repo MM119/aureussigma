@@ -70,7 +70,7 @@ const i18n = {
     perf: {
       title: "Investment Approach",
       note:
-        "Backtested performance and risk metrics. Company established 2025. Fund management solutions to be announced.",
+        "Target Performance\nSharpe >1.0\n\nAdvanced Risk Framework\nMulti-layer Controls",
     },
     strategies: {
       title: "Trading Strategies",
