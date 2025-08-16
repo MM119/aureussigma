@@ -599,7 +599,7 @@ export default function App() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.marketFocus}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">Vietnam</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'Vietnam' : 'Việt Nam'}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.approach}</span>
