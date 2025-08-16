@@ -71,6 +71,18 @@ const i18n = {
       title: "Investment Approach",
       note:
         "Target Performance\nSharpe >1.0\n\nAdvanced Risk Framework\nMulti-layer Controls",
+      targetMetricsTitle: "Target Metrics (Backtested)",
+      strategyCharacteristicsTitle: "Strategy Characteristics",
+      targetSharpeRatio: "Target Sharpe Ratio",
+      targetVolatility: "Target Volatility",
+      drawdownControl: "Drawdown Control",
+      marketFocus: "Market Focus",
+      approach: "Approach",
+      numberOfStrategies: "Number of Strategies",
+      marketsCovered: "Markets Covered",
+      rebalanceFrequency: "Rebalance Frequency",
+      leverageUsage: "Leverage Usage",
+      focusMarket: "Focus Market",
     },
     strategies: {
       title: "Trading Strategies",
@@ -186,6 +198,18 @@ const i18n = {
       title: "Phương pháp đầu tư",
       note:
         "• Vốn tự doanh: 2025 (Tập trung Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
+      targetMetricsTitle: "Chỉ số mục tiêu (Backtest)",
+      strategyCharacteristicsTitle: "Đặc điểm chiến lược",
+      targetSharpeRatio: "Tỷ lệ Sharpe mục tiêu",
+      targetVolatility: "Biến động mục tiêu",
+      drawdownControl: "Kiểm soát drawdown",
+      marketFocus: "Thị trường tập trung",
+      approach: "Phương pháp",
+      numberOfStrategies: "Số lượng chiến lược",
+      marketsCovered: "Thị trường bao phủ",
+      rebalanceFrequency: "Tần suất tái cân bằng",
+      leverageUsage: "Sử dụng đòn bẩy",
+      focusMarket: "Thị trường tập trung",
     },
     strategies: {
       title: "Chiến lược giao dịch",
@@ -559,51 +583,51 @@ export default function App() {
           <SectionTitle icon={LineChartIcon} title={t.perf.title} />
           <div className="grid md:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-3 tracking-tight">Target Metrics (Backtested)</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-3 tracking-tight">{t.perf.targetMetricsTitle}</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Target Sharpe Ratio</span>
+                  <span className="text-sm text-slate-600">{t.perf.targetSharpeRatio}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">&gt;1.0</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Target Volatility</span>
+                  <span className="text-sm text-slate-600">{t.perf.targetVolatility}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">8-15%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Drawdown Control</span>
+                  <span className="text-sm text-slate-600">{t.perf.drawdownControl}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">&lt;8%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Market Focus</span>
+                  <span className="text-sm text-slate-600">{t.perf.marketFocus}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">Vietnam</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Approach</span>
+                  <span className="text-sm text-slate-600">{t.perf.approach}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">Systematic</span>
                 </div>
               </div>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h3 className="text-lg font-semibold text-slate-900 mb-3 tracking-tight">Strategy Characteristics</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-3 tracking-tight">{t.perf.strategyCharacteristicsTitle}</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Number of Strategies</span>
+                  <span className="text-sm text-slate-600">{t.perf.numberOfStrategies}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">3</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Markets Covered</span>
+                  <span className="text-sm text-slate-600">{t.perf.marketsCovered}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">VN Equity</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Rebalance Frequency</span>
+                  <span className="text-sm text-slate-600">{t.perf.rebalanceFrequency}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">Dynamic</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Leverage Usage</span>
+                  <span className="text-sm text-slate-600">{t.perf.leverageUsage}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">None</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-600">Focus Market</span>
+                  <span className="text-sm text-slate-600">{t.perf.focusMarket}</span>
                   <span className="font-mono text-sm font-medium text-slate-900">Vietnam</span>
                 </div>
               </div>
