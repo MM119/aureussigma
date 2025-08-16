@@ -228,6 +228,15 @@ const i18n = {
         "Đầu tư hệ thống",
         "Thị trường Việt Nam",
       ],
+      statusInternalResearch: "Nghiên cứu nội bộ",
+      statusInDevelopment: "Đang phát triển",
+      statusResearchPipeline: "Đang nghiên cứu",
+      bulletsGlobal: [
+        "Phương pháp định lượng",
+        "Quản lý rủi ro",
+        "Đầu tư hệ thống",
+        "Thị trường thế giới",
+      ],
     },
     platform: {
       title: "Hạ tầng",
@@ -688,7 +697,7 @@ export default function App() {
                 ))}
               </div>
               <div className="mt-auto pt-4">
-                <span className="text-xs text-slate-500">Internal Research</span>
+                <span className="text-xs text-slate-500">{lang === 'en' ? 'Internal Research' : t.strategies.statusInternalResearch}</span>
               </div>
             </div>
 
@@ -708,7 +717,7 @@ export default function App() {
                 ))}
               </div>
               <div className="mt-auto pt-4">
-                <span className="text-xs text-slate-500">In Development</span>
+                <span className="text-xs text-slate-500">{lang === 'en' ? 'In Development' : t.strategies.statusInDevelopment}</span>
               </div>
             </div>
 
@@ -720,7 +729,7 @@ export default function App() {
               </div>
               <p className="mt-2 text-slate-600 text-sm">{t.strategies.mmDesc}</p>
               <div className="mt-4 space-y-2 text-xs">
-                {t.strategies.bullets.map((b) => (
+                {t.strategies.bulletsGlobal.map((b) => (
                   <div key={b} className="flex items-center gap-2">
                     <div className="h-1 w-1 bg-slate-400 rounded-full" />
                     <span className="text-slate-600">{b}</span>
@@ -728,7 +737,7 @@ export default function App() {
                 ))}
               </div>
               <div className="mt-auto pt-4">
-                <span className="text-xs text-slate-500">Research Pipeline</span>
+                <span className="text-xs text-slate-500">{lang === 'en' ? 'Research Pipeline' : t.strategies.statusResearchPipeline}</span>
               </div>
             </div>
           </div>
