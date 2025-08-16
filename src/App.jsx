@@ -530,24 +530,24 @@ export default function App() {
           {/* KPI Grid */}
       <div className="mt-14 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
-              <div className="text-xs uppercase tracking-wide text-slate-400">Proprietary Capital</div>
+              <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.aum}</div>
               <div className="mt-1 text-2xl font-light text-white">2025</div>
-              <div className="text-xs text-slate-400 mt-1">Vietnam Focus</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Vietnam Focus' : 'Tập trung Việt Nam'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
-              <div className="text-xs uppercase tracking-wide text-slate-400">Strategies in Development</div>
+              <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.signals}</div>
               <div className="mt-1 text-2xl font-light text-white">3</div>
-              <div className="text-xs text-slate-400 mt-1">In Development</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'In Development' : 'Đang phát triển'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
-              <div className="text-xs uppercase tracking-wide text-slate-400">Target Performance</div>
+              <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.sharpe}</div>
               <div className="mt-1 text-2xl font-light text-white">&gt;1.0</div>
-              <div className="text-xs text-slate-400 mt-1">Sharpe Ratio</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Sharpe Ratio' : 'Tỷ lệ Sharpe'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
-              <div className="text-xs uppercase tracking-wide text-slate-400">Advanced Risk Framework</div>
-              <div className="mt-1 text-2xl font-light text-white">Multi-layer</div>
-              <div className="text-xs text-slate-400 mt-1">Controls</div>
+              <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.drawdown}</div>
+              <div className="mt-1 text-2xl font-light text-white">{lang === 'en' ? 'Multi-layer' : 'Đa tầng'}</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Controls' : 'Kiểm soát'}</div>
             </div>
           </div>
         </div>
