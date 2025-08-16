@@ -170,9 +170,9 @@ const i18n = {
       portal: "Nhà đầu tư",
     },
     hero: {
-      title: "Giao Dịch Hệ Thống Chuẩn Tổ Chức",
+      title: "Giao Dịch Định Lượng Chuẩn Quốc Tế",
       subtitle:
-        "Phương pháp kỷ luật, dựa trên dữ liệu theo chuẩn quốc tế; am hiểu cấu trúc thị trường Việt Nam.",
+        "Nghiên cứu và kỹ thuật định lượng, kỷ luật, theo chuẩn quốc tế – kết hợp am hiểu sâu sắc thị trường Việt Nam.",
       ctaPrimary: "Yêu cầu thông tin",
       ctaSecondary: "Yêu cầu truy cập",
     },
@@ -185,7 +185,7 @@ const i18n = {
     perf: {
       title: "Phương pháp đầu tư",
       note:
-        "Hiệu suất backtest và thông số rủi ro. Công ty thành lập 2025. Giải pháp quản lý quỹ sẽ được công bố.",
+        "• Vốn tự doanh: 2025 (Tập trung Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
     },
     strategies: {
       title: "Chiến lược giao dịch",
