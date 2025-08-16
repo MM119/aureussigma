@@ -247,7 +247,7 @@ const i18n = {
     contact: {
       title: "Liên hệ",
       desc:
-        "Dành cho cơ hội đầu tư hoặc thắm hỏi chung.",
+        "Dành cho cơ hội đầu tư hoặc thông tin chung.",
       emailPlaceholder: "email@cua-ban.com",
       send: "Gửi tin nhắn",
     },
