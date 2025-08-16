@@ -199,14 +199,14 @@ const i18n = {
       note:
         "• Vốn tự doanh: 2025 (Tập trung Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
       targetMetricsTitle: "Chỉ số mục tiêu (Backtest)",
-      strategyCharacteristicsTitle: "Đặc điểm chiến lược",
+      strategyCharacteristicsTitle: "Chiến lược giao dịch",
       targetSharpeRatio: "Tỷ lệ Sharpe mục tiêu",
-      targetVolatility: "Biến động mục tiêu",
+      targetVolatility: "Mức biến động danh mục",
       drawdownControl: "Kiểm soát drawdown",
       marketFocus: "Thị trường tập trung",
       approach: "Phương pháp",
       numberOfStrategies: "Số lượng chiến lược",
-      marketsCovered: "Thị trường bao phủ",
+      marketsCovered: "Thị trường mục tiêu",
       rebalanceFrequency: "Tần suất tái cân bằng",
       leverageUsage: "Sử dụng đòn bẩy",
       focusMarket: "Thị trường tập trung",
@@ -603,7 +603,7 @@ export default function App() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.approach}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">Systematic</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">{lang === 'en' ? 'Systematic' : 'Đầu tư hệ thống'}</span>
                 </div>
               </div>
             </div>
