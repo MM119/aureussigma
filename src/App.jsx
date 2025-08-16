@@ -178,7 +178,7 @@ const i18n = {
     },
     kpi: {
       aum: "Thành lập",
-      signals: "Chiến lược phát triển",
+      signals: "Chiến lược giao dịch",
       drawdown: "Khung quản lý rủi ro",
       sharpe: "Hiệu suất mục tiêu",
     },
@@ -227,7 +227,7 @@ const i18n = {
       title: "Nghiên cứu",
       items: [
         { title: "Thư quý Q3 2025", tag: "Hạn chế" },
-        { title: "Khung quản lý rủi ro", tag: "Bảo mật" },
+        { title: "Quản lý rủi ro", tag: "Bảo mật" },
         { title: "Phân tích hiệu suất", tag: "LP Only" },
       ],
       viewAll: "Yêu cầu truy cập",
@@ -239,7 +239,7 @@ const i18n = {
         "Cựu CEO Techcom Capital và Techcom Securities; cựu CFO Ngân hàng TMCP Phương Đông (Orient Commercial Bank); Partner tại Kusto Group. Hơn 20 năm trong lĩnh vực thị trường vốn và quản trị cấp cao.",
       cofounder: "Minh Mai — Tổng Giám đốc",
       cofounderBio:
-        "CFA. Trưởng phòng Nghiên cứu tại Fujiwara Capital (Quỹ đầu cơ Macro toàn cầu). Trưởng bộ phận Nghiên cứu tại Vietbridge Capital. ESCP Europe.",
+        "CFA. Trưởng phòng Nghiên cứu tại Fujiwara Capital (Quỹ đầu cơ Macro). Trưởng bộ phận Nghiên cứu tại Vietbridge Capital. ESCP Europe.",
       advisors: "Hội đồng cố vấn",
       advisorsBio:
         "Chuyên gia cấp cao từ các quỹ định lượng hàng đầu.",
@@ -542,7 +542,7 @@ export default function App() {
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
               <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.sharpe}</div>
               <div className="mt-1 text-2xl font-light text-white">&gt;1.0</div>
-              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Sharpe Ratio' : 'Tỷ lệ Sharpe'}</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Sharpe Ratio' : 'Sharpe'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
               <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.drawdown}</div>
