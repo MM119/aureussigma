@@ -197,7 +197,7 @@ const i18n = {
     perf: {
       title: "Phương pháp đầu tư",
       note:
-        "• Vốn tự doanh: 2025 (Tập trung Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
+        "• Vốn tự doanh: 2025 (Thị trường Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
       targetMetricsTitle: "Chỉ số mục tiêu (Backtest)",
       strategyCharacteristicsTitle: "Chiến lược giao dịch",
       targetSharpeRatio: "Tỷ lệ Sharpe mục tiêu",
@@ -221,12 +221,12 @@ const i18n = {
         "Chiến lược định lượng trung lập thị trường.",
       mmTitle: "Chiến lược Gamma",
       mmDesc:
-        "Giao dịch hệ thống đa tài sản.",
+        "Giao dịch hệ thống đa tài sản cho thị trường thế giới.",
       bullets: [
         "Phương pháp định lượng",
         "Quản lý rủi ro",
-        "Quy trình hệ thống",
-        "Tập trung Việt Nam",
+        "Đầu tư hệ thống",
+        "Thị trường Việt Nam",
       ],
     },
     platform: {
@@ -556,7 +556,7 @@ export default function App() {
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
               <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.aum}</div>
               <div className="mt-1 text-2xl font-light text-white">2025</div>
-              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Vietnam Focus' : 'Tập trung Việt Nam'}</div>
+              <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Vietnam Focus' : 'Thị trường Việt Nam'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
               <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.signals}</div>
