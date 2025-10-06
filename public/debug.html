@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Module Loading Test</title>
+</head>
+<body>
+    <h1>Module Loading Test</h1>
+    <div id="root">Loading...</div>
+    <div id="status"></div>
+    
+    <script>
+        const status = document.getElementById('status');
+        
+        // Test if modules are supported
+        const supportsModules = 'noModule' in HTMLScriptElement.prototype;
+        status.innerHTML += '<p>Module support: ' + supportsModules + '</p>';
+        
+        // Try to load the module
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/assets/index-N3ncDMwz.js';
+        
+        script.onload = () => {
+            status.innerHTML += '<p>Module loaded successfully!</p>';
+        };
+        
+        script.onerror = (e) => {
+            status.innerHTML += '<p style="color: red;">Module failed to load: ' + e + '</p>';
+        };
+        
+        document.head.appendChild(script);
+        
+        // Also check if the root element gets updated
+        setTimeout(() => {
+            const root = document.getElementById('root');
+            if (root.innerHTML === 'Loading...') {
+                status.innerHTML += '<p style="color: orange;">React app did not mount after 3 seconds</p>';
+            } else {
+                status.innerHTML += '<p style="color: green;">React app mounted successfully!</p>';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
