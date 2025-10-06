@@ -49,10 +49,12 @@ Add the following headers (click "Set dynamic" or "Set static" for each):
 - **Header name:** `Permissions-Policy`
 - **Value:** `geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()`
 
-#### Header 6: Content-Security-Policy
+#### Header 6: Content-Security-Policy (WORKING VERSION - TESTED)
 - **Action:** Set static
 - **Header name:** `Content-Security-Policy`
-- **Value:** `default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'`
+- **Value:** `default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests`
+
+**IMPORTANT:** This temporarily includes `'unsafe-inline'` in `script-src` to get your site working. Vite may inject inline scripts during the build process. You can remove it later after testing.
 
 #### Header 7: Access-Control-Allow-Origin (Remove GitHub Pages CORS)
 - **Action:** Set static
