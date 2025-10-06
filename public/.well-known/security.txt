@@ -1,0 +1,14 @@
+# security.txt for Aureus Sigma Capital (RFC 9116)
+# See: https://securitytxt.org/ and RFC 9116
+
+Contact: mailto:contact@aureussigmacapital.com
+Preferred-Languages: en, vi
+Canonical: https://aureussigmacapital.com/.well-known/security.txt
+Policy: https://aureussigmacapital.com/.well-known/security.txt
+Expires: 2026-10-06T00:00:00Z
+
+# Notes:
+# - Responsible disclosure is appreciated. Please avoid actions that may cause
+#   service disruption (e.g., DoS, resource exhaustion) or data exfiltration.
+# - Limit testing to assets in the aureussigmacapital.com domain unless otherwise authorized.
+

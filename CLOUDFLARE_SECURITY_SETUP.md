@@ -76,7 +76,24 @@ Add the following headers (click "Set dynamic" or "Set static" for each):
    - ✅ **Certificate Transparency Monitoring**
    - Set **Minimum TLS Version** to: `TLS 1.2`
 
-### 4. Additional Security Settings (Optional but Recommended)
+### 4. Fix `www` → apex redirect (avoid HTTPS → HTTP downgrade)
+
+Observed issue: `https://www.aureussigmacapital.com` was redirecting to `http://aureussigmacapital.com/` (downgrade).
+
+Create a host-specific redirect to force `www` → apex over HTTPS:
+
+1. Go to **Rules** → **Redirect Rules** → **Create rule**
+2. Name: `WWW to Apex (HTTPS)`
+3. Expression:
+   - `http.host eq "www.aureussigmacapital.com"`
+4. Action: **Static Redirect**
+   - Status code: `301`
+   - URL: `https://aureussigmacapital.com${uri}`
+5. Place this rule above generic redirects. Keep **Always Use HTTPS** enabled.
+
+Alternative (Legacy): **Page Rules** → `www.aureussigmacapital.com/*` → **Forwarding URL (301)** → `https://aureussigmacapital.com/$1`.
+
+### 5. Additional Security Settings (Optional but Recommended)
 
 #### Enable Security Features
 1. Go to **Security** → **Settings**
