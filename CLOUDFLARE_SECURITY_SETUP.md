@@ -49,12 +49,15 @@ Add the following headers (click "Set dynamic" or "Set static" for each):
 - **Header name:** `Permissions-Policy`
 - **Value:** `geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()`
 
-#### Header 6: Content-Security-Policy (WORKING VERSION - TESTED)
+#### Header 6: Content-Security-Policy (FIXED - SUPPORTS VITE + LEGACY)
 - **Action:** Set static
 - **Header name:** `Content-Security-Policy`
-- **Value:** `default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests`
+- **Value:** `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests`
 
-**IMPORTANT:** This temporarily includes `'unsafe-inline'` in `script-src` to get your site working. Vite may inject inline scripts during the build process. You can remove it later after testing.
+**IMPORTANT:** 
+- `'unsafe-inline'` is required for Vite's inline module detection script
+- `'unsafe-eval'` is required for SystemJS (used by the legacy plugin for older browsers)
+- Both are necessary for the site to work with the current build configuration
 
 #### Header 7: Access-Control-Allow-Origin (Remove GitHub Pages CORS)
 - **Action:** Set static
@@ -101,14 +104,21 @@ After applying these changes:
 
 ## CSP Notes
 
-The **improved** Content-Security-Policy:
-- ✅ **Removed `unsafe-inline`** from `script-src` (no longer needed - Vite bundles are external)
-- ✅ **Removed `unsafe-eval`** (not needed for production builds)
+The **working** Content-Security-Policy for Vite + Legacy Plugin:
+- ⚠️ **`'unsafe-inline'` in `script-src`** - Required for Vite's inline module detection
+- ⚠️ **`'unsafe-eval'` in `script-src`** - Required for SystemJS (legacy browser support)
 - ✅ Allows Tailwind CSS from CDN (`https://cdn.tailwindcss.com`)
 - ✅ Allows Google Fonts for typography
-- ✅ Inline styles only (required for Tailwind - `style-src 'unsafe-inline'` is acceptable)
+- ✅ Inline styles allowed (required for Tailwind - `style-src 'unsafe-inline'` is acceptable)
 - ✅ Images from any HTTPS source
 - ✅ Added `base-uri 'self'` and `form-action 'self'` for extra protection
+
+**Security Note:** While `'unsafe-inline'` and `'unsafe-eval'` reduce security, they are currently necessary for:
+1. Vite's module system to work properly
+2. SystemJS to dynamically load polyfills for older browsers
+3. Proper fallback behavior for browsers that don't support ES modules
+
+If you want to remove these directives for better security, you would need to switch to a different build system or serve pre-built static HTML files without client-side JavaScript.
 
 ## CORS Policy Fix
 
@@ -167,7 +177,7 @@ async function handleRequest(request) {
   newResponse.headers.set('X-Content-Type-Options', 'nosniff')
   newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   newResponse.headers.set('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), payment=()')
-  newResponse.headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' data: https:; font-src 'self' data:; frame-ancestors 'self'")
+  newResponse.headers.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests")
 
   return newResponse
 }
