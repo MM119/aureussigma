@@ -52,7 +52,12 @@ Add the following headers (click "Set dynamic" or "Set static" for each):
 #### Header 6: Content-Security-Policy
 - **Action:** Set static
 - **Header name:** `Content-Security-Policy`
-- **Value:** `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'self'`
+- **Value:** `default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'`
+
+#### Header 7: Access-Control-Allow-Origin (Remove GitHub Pages CORS)
+- **Action:** Set static
+- **Header name:** `Access-Control-Allow-Origin`
+- **Value:** `https://aureussigmacapital.com`
 
 ### 3. Enable SSL/TLS Settings
 
@@ -94,11 +99,23 @@ After applying these changes:
 
 ## CSP Notes
 
-The Content-Security-Policy provided allows:
-- ✅ Tailwind CSS from CDN (`https://cdn.tailwindcss.com`)
-- ✅ Inline scripts and styles (required for React and Tailwind)
+The **improved** Content-Security-Policy:
+- ✅ **Removed `unsafe-inline`** from `script-src` (no longer needed - Vite bundles are external)
+- ✅ **Removed `unsafe-eval`** (not needed for production builds)
+- ✅ Allows Tailwind CSS from CDN (`https://cdn.tailwindcss.com`)
+- ✅ Allows Google Fonts for typography
+- ✅ Inline styles only (required for Tailwind - `style-src 'unsafe-inline'` is acceptable)
 - ✅ Images from any HTTPS source
-- ✅ Google Analytics (if you add it later)
+- ✅ Added `base-uri 'self'` and `form-action 'self'` for extra protection
+
+## CORS Policy Fix
+
+GitHub Pages sets `Access-Control-Allow-Origin: *` by default, which is flagged as insecure.
+
+**Solution:** Override it in Cloudflare Transform Rules (Header 7) to restrict to your domain only:
+- `Access-Control-Allow-Origin: https://aureussigmacapital.com`
+
+This is safe because your site doesn't need to be embedded cross-origin.
 
 ### If your site breaks after enabling CSP:
 
