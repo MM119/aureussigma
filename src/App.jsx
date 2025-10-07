@@ -37,7 +37,7 @@ import {
 const LOGO_SRC = "/asc-logo-transparent.png";
 const TEAM_PHOTOS = {
   founder: "/team-duc.jpg",
-  cofounder: "/team-minh.jpg" // add this file to public/
+  cofounder: "/team-minh3.jpg"
 };
 const BRAND = { charcoal: "#0f172a", gold: "#D4AF37" };
 
