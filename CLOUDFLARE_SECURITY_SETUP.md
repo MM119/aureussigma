@@ -60,9 +60,22 @@ Add the following headers (click "Set dynamic" or "Set static" for each):
 - Both are necessary for the site to work with the current build configuration
 
 #### Header 7: Access-Control-Allow-Origin (Remove GitHub Pages CORS)
-- **Action:** Set static
-- **Header name:** `Access-Control-Allow-Origin`
-- **Value:** `https://aureussigmacapital.com`
+- GitHub Pages injects `Access-Control-Allow-Origin: *`. To avoid duplicate/conflicting ACAO headers, first **Remove** the header, then **Set** it.
+
+1) Remove header
+   - **Action:** Remove
+   - **Header name:** `Access-Control-Allow-Origin`
+
+2) Set header
+   - **Action:** Set static
+   - **Header name:** `Access-Control-Allow-Origin`
+   - **Value:** `https://aureussigmacapital.com`
+
+Similarly, to avoid duplicate CSP headers on 404 pages, add a rule to remove existing CSP before setting the policy above:
+
+3) Remove existing CSP
+   - **Action:** Remove
+   - **Header name:** `Content-Security-Policy`
 
 ### 3. Enable SSL/TLS Settings
 
