@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 
 // Static public asset paths
-const LOGO_SRC = "/asc-logo-new.png";
+const LOGO_SRC = "/asc-logo-transparent.png";
 const TEAM_PHOTOS = {
   founder: "/team-duc.jpg",
   cofounder: "/team-minh3.jpg"
@@ -70,7 +70,7 @@ const i18n = {
     perf: {
       title: "Investment Approach",
       note:
-        "Target Performance\nSharpe >1.0\n\nAdvanced Risk Framework\nMulti-layer Controls",
+        "Target Performance\nSharpe >1.4\n\nAdvanced Risk Framework\nMulti-layer Controls",
       targetMetricsTitle: "Target Metrics (Backtested)",
       strategyCharacteristicsTitle: "Strategy Characteristics",
       targetSharpeRatio: "Target Sharpe Ratio",
@@ -197,7 +197,7 @@ const i18n = {
     perf: {
       title: "Phương pháp đầu tư",
       note:
-        "• Vốn tự doanh: 2025 (Thị trường Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.0\n• Khung quản trị rủi ro: Đa tầng tích hợp",
+        "• Vốn tự doanh: 2025 (Thị trường Việt Nam)\n• Chiến lược đang phát triển: 3\n• Hiệu suất mục tiêu: Sharpe >1.4\n• Khung quản trị rủi ro: Đa tầng tích hợp",
       targetMetricsTitle: "Chỉ số mục tiêu (Backtest)",
       strategyCharacteristicsTitle: "Chiến lược giao dịch",
       targetSharpeRatio: "Tỷ lệ Sharpe mục tiêu",
@@ -574,7 +574,7 @@ export default function App() {
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
               <div className="text-xs uppercase tracking-wide text-slate-400">{t.kpi.sharpe}</div>
-              <div className="mt-1 text-2xl font-light text-white">&gt;1.0</div>
+              <div className="mt-1 text-2xl font-light text-white">&gt;1.4</div>
               <div className="text-xs text-slate-400 mt-1">{lang === 'en' ? 'Sharpe Ratio' : 'Sharpe'}</div>
             </div>
             <div className="rounded-lg bg-slate-800/50 backdrop-blur border border-slate-700 p-4">
@@ -596,15 +596,15 @@ export default function App() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.targetSharpeRatio}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">&gt;1.0</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">&gt;1.4</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.targetVolatility}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">8-15%</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">15-20%</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.drawdownControl}</span>
-                  <span className="font-mono text-sm font-medium text-slate-900">&lt;8%</span>
+                  <span className="font-mono text-sm font-medium text-slate-900">&lt;25%</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-600">{t.perf.marketFocus}</span>
@@ -642,8 +642,17 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="mt-6 p-4 bg-slate-100 rounded-lg">
-            <p className="text-xs text-slate-600">{t.perf.note}</p>
+          {/* Three minimal highlight badges */}
+          <div className="mt-6 flex justify-center items-center gap-6 md:gap-8">
+            <div className="px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+              <span className="text-sm font-medium text-slate-700">Sharpe &gt;1.4</span>
+            </div>
+            <div className="px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+              <span className="text-sm font-medium text-slate-700">Advanced Risk Framework</span>
+            </div>
+            <div className="px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+              <span className="text-sm font-medium text-slate-700">Multi-layer Controls</span>
+            </div>
           </div>
           <SectionDivider />
         </div>
@@ -653,11 +662,11 @@ export default function App() {
       <section id="principles" className="py-12 md:py-16 bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle icon={Layers} title={t.principles.title} subtitle={t.principles.subtitle} showAccent={false} />
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+          <div className="grid md:grid-cols-2 gap-6">
             {t.principles.items.map((p, idx) => (
-              <div key={p.title} className="relative overflow-hidden bg-white p-0">
+              <div key={p.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm relative overflow-hidden">
                 {/* Subtle mathematical motif: golden ratio arcs + sigma */}
-                <svg className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-10" viewBox="0 0 200 200" fill="none">
+                <svg className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 opacity-5" viewBox="0 0 200 200" fill="none">
                   {/* Golden ratio quarter-circles */}
                   <path d="M0,200 A200,200 0 0 1 200,0" stroke={BRAND.gold} strokeWidth="1" />
                   <path d="M50,200 A150,150 0 0 1 200,50" stroke={BRAND.gold} strokeWidth="0.8" />
@@ -665,9 +674,9 @@ export default function App() {
                   {/* Minimal sigma glyph */}
                   <path d="M120,40 C80,40 70,60 95,80 C70,95 75,120 120,120" stroke="#94a3b8" strokeWidth="1.2" />
                 </svg>
-                <div className="p-0">
-                  <h3 className="text-base font-semibold text-slate-900 tracking-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm text-slate-700 leading-relaxed">{p.desc}</p>
+                <div className="relative z-10">
+                  <h3 className="text-lg font-semibold text-slate-900 tracking-tight mb-3">{p.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -882,8 +891,8 @@ export default function App() {
                 {t.hero.ctaSecondary}
               </button>
             </div>
-            <div className="mt-6 text-center">
-              <p className="text-sm text-slate-600">Email: contact@aureussigmacapital.com</p>
+            <div className="mt-6">
+              <p className="text-sm text-slate-600">Email: <a href="mailto:contact@aureussigmacapital.com" className="hover:underline">contact@aureussigmacapital.com</a> | <a href="mailto:minh@ascap.vn" className="hover:underline">minh@ascap.vn</a></p>
               <p className="text-xs text-slate-500 mt-2">Information provided is intended for institutional/professional investors only.</p>
             </div>
           </div>
